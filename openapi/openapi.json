@@ -1,0 +1,716 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "cloud4.aero In-Flight API",
+    "description": "API for retrieving in-flight data, flight plans, airport data, and environmental information.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "m-click.aero GmbH",
+      "url": "https://cloud4.aero/v1/in-flight"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://cloud4.aero/v1/in-flight",
+      "description": "cloud4.aero production server"
+    }
+  ],
+    "tags": [
+    {
+      "name": "match",
+      "description": "In-flight Match Services",
+      "externalDocs": {
+        "description": "The in-flight match services allow for retrieving flight plans and flightId with different ways of filtering.",
+        "url": "https://cloud4.aero/v1/in-flight#_in_flight_match_services"
+      }
+    },
+    {
+      "name": "details",
+      "description": "In-Flight Details Services"
+    },
+    {
+      "name": "env",
+      "description": "In-Flight Environment Services."
+    },
+    {
+      "name": "airport",
+      "description": "In-Flight Airport Services."
+    },
+    {
+      "name": "flight",
+      "description": "In-Flight Flight Services."
+    }
+  ],
+  "paths": {
+    "/in-flight/match/citypair/{departure}/{arrival}/{icao_airline}": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Retrieve flight plans by city pair and ICAO airline",
+        "parameters": [
+          {
+            "name": "departure",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of departure airport",
+            "schema": {
+              "type": "string",
+              "examples": ["EDDB"]
+            }
+          },
+          {
+            "name": "arrival",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of arrival airport",
+            "schema": {
+              "type": "string",
+              "examples": ["LHR"]
+            }
+          },
+          {
+            "name": "icao_airline",
+            "in": "path",
+            "required": true,
+            "description": "ICAO airline code or * for all airlines",
+            "schema": {
+              "type": "string",
+              "examples": ["BAW"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Collection of matching flight plans",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FlightPlanResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/in-flight/match/aircraft/{identifier}": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Match flights by aircraft identifier",
+        "description": "Retrieve flights based on aircraft identifier, such as callsign, ICAO hex code, or registration mark.",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "description": "Identifier of aircraft: callsign, ICAO hex code, or registration mark",
+            "schema": {
+              "type": "string",
+              "examples": ["BAW981"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of matching flights based on aircraft identifier",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FlightPlanResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/in-flight/match/flight/{iata_airline}/{flightId}": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Match by IATA airline code and flight number",
+        "description": "Retrieve flights based on IATA airline code and flight number.",
+        "parameters": [
+          {
+            "name": "iata_airline",
+            "in": "path",
+            "required": true,
+            "description": "IATA identifier of aircraft",
+            "schema": {
+              "type": "string",
+              "examples": ["73J", "742", "32N"]
+            }
+          },
+                    {
+            "name": "flightId",
+            "in": "path",
+            "required": true,
+            "description": "Flight plan by ID",
+            "schema": {
+              "type": "string",
+              "examples": ["BAW981"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of matching flights based on aircraft identifier",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FlightPlanResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/details/{flightId}": {
+      "get": {
+        "tags": [
+          "details"
+        ],
+        "summary": "Retrieve detailed flight plan by ID",
+        "parameters": [
+          {
+            "name": "flightId",
+            "in": "path",
+            "required": true,
+            "description": "Unique flight ID",
+            "schema": {
+              "type": "string",
+              "examples": ["AA60819762"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed flight plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actualTakeOffTime": { "type": "string", "format": "date-time", "description": "Actual take off time" },
+                    "aircraftType": { "type": "string", "description": "Aircraft type" },
+                    "departure": { "$ref": "#/components/schemas/AirportInfo" },
+                    "destination": { "$ref": "#/components/schemas/AirportInfo" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/details/{flightId}/{cursor}": {
+      "get": {
+        "tags": [
+          "details"
+        ],
+        "summary": "Retrieve detailed flight plan by ID",
+        "parameters": [
+          {
+            "name": "flightId",
+            "in": "path",
+            "required": true,
+            "description": "Unique flight ID",
+            "schema": {
+              "type": "string",
+              "examples": ["AA60819762"]
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor to be used for messaging.",
+            "schema": {
+              "type": "string",
+              "examples": ["1111111"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed flight plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actualTakeOffTime": { "type": "string", "format": "date-time", "description": "Actual take off time" },
+                    "aircraftType": { "type": "string", "description": "Aircraft type" },
+                    "departure": { "$ref": "#/components/schemas/AirportInfo" },
+                    "destination": { "$ref": "#/components/schemas/AirportInfo" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/env/{flightId}/{radius}": {
+      "get": {
+        "tags": [
+          "env"
+        ],
+        "summary": "Retrieve flight environment",
+        "parameters": [
+          {
+            "name": "flightId",
+            "in": "path",
+            "required": true,
+            "description": "Unique flight ID",
+            "schema": {
+              "type": "string",
+              "examples": ["AA60819762"]
+            }
+          },
+          {
+            "name": "radius",
+            "in": "path",
+            "required": true,
+            "description": "Radius in degrees",
+            "schema": {
+              "type": "number",
+              "examples": [5.0]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Flight environment data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "bufferGeometry": { "type": "object", "description": "GeoJSON Polygon of flight environment" },
+                    "airports": { "type": "object", "description": "Airports within environment" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/env/{radius}/{EOBT}/{departure}/{destination}/{icao_route}": {
+      "get": {
+        "tags": [
+          "env"
+        ],
+        "summary": "Retrieve flight environment by EOBT, departure, destination, and route",
+        "description": "Retrieves flight environment data using estimated off-block time (EOBT), departure, destination, and ICAO route, with specified buffer radius.",
+        "parameters": [
+          {
+            "name": "radius",
+            "in": "path",
+            "required": true,
+            "description": "Buffer radius in degrees",
+            "schema": { "type": "number", "examples": [5.0] }
+          },
+          {
+            "name": "EOBT",
+            "in": "path",
+            "required": true,
+            "description": "Estimated off-block time in ISO 8601 format",
+            "schema": { "type": "string", "format": "date-time", "examples": ["2024-07-09T18:45:00Z"] }
+          },
+          {
+            "name": "departure",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of departure airport",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "destination",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of destination airport",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "icao_route",
+            "in": "path",
+            "required": true,
+            "description": "ICAO route",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Environment data for specified parameters",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EnvironmentResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/in-flight/airport/{icao_designators}": {
+      "get": {
+        "tags": [
+          "airport"
+        ],
+        "summary": "Retrieve airport data",
+        "parameters": [
+          {
+            "name": "icao_designators",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of ICAO designators",
+            "schema": {
+              "type": "string",
+              "examples": ["EDDB","EDDF"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airport data as FeatureCollection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AirportFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/in-flight/airport/{icao_designators}/{cursor}": {
+      "get": {
+        "tags": [
+          "airport"
+        ],
+        "summary": "Retrieve airport data",
+        "parameters": [
+          {
+            "name": "icao_designators",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of ICAO designators",
+            "schema": {
+              "type": "string",
+              "examples": ["EDDB","EDDF"]
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor to be used for messaging.",
+            "schema": {
+              "type": "string",
+              "examples": ["12345"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Airport data as FeatureCollection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AirportFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },    
+    "/in-flight/flight/{flightId}": {
+      "get": {
+        "tags": [
+          "flight"
+        ],
+        "summary": "Retrieve flight details with additional ATFCM data",
+        "description": "Provides detailed flight data for a specified flight ID, including ATFCM measure locations and flight data entries.",
+        "parameters": [
+          {
+            "name": "flightId",
+            "in": "path",
+            "required": true,
+            "description": "Unique flight ID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Flight plan details including ATFCM measure locations and additional flight data entries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlightPlanWithATFCM"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/in-flight/flight/{flightId}/{cursor}": {
+      "get": {
+        "tags": [
+          "flight"
+        ],
+        "summary": "Retrieve flight details with additional ATFCM data",
+        "description": "Provides detailed flight data for a specified flight ID, including ATFCM measure locations and flight data entries, with optional cursor for messaging.",
+        "parameters": [
+          {
+            "name": "flightId",
+            "in": "path",
+            "required": true,
+            "description": "Unique flight ID",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for paginating or continuing data retrieval",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Flight plan details including ATFCM measure locations and additional flight data entries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlightPlanWithATFCM"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FlightPlanResponse": {
+        "type": "object",
+        "description": "Response object containing an array of flight plans",
+        "properties": {
+          "flightPlans": {
+            "type": "array",
+            "description": "Array of flight plan objects",
+            "items": {
+              "$ref": "#/components/schemas/FlightPlan"
+            }
+          }
+        },
+        "required": ["flightPlans"]
+      },
+      "DetailedFlightPlan": {
+        "type": "object",
+        "properties": {
+          "flightId": { "type": "string", "description": "Unique flight ID" },
+          "actualTakeOffTime": { "type": "string", "format": "date-time", "description": "Actual take off time" },
+          "actualTimeOfArrival": { "type": "string", "format": "date-time", "description": "Actual time of arrival" },
+          "aircraftType": { "type": "string", "description": "Type of aircraft" },
+          "departure": { "$ref": "#/components/schemas/AirportInfo" },
+          "destination": { "$ref": "#/components/schemas/AirportInfo" },
+          "estimatedArrivalTime": { "type": "string", "format": "date-time", "description": "Estimated time of arrival" },
+          "estimatedOffBlockTime": { "type": "string", "format": "date-time", "description": "Estimated off-block time" },
+          "icaoRoute": { "type": "string", "description": "ICAO route" },
+          "registrationMark": { "type": "string", "description": "Aircraft registration mark" },
+          "surveillanceEquipment": { "type": "array", "items": { "type": "string" }, "description": "List of surveillance equipment" }
+        }
+      },
+      "FlightPlanWithATFCM": {
+        "type": "object",
+        "description": "The response gives flightplan details of the given flight ID plus the additional fields",
+        "properties": {
+          "flightplan": { "$ref": "#/components/schemas/DetailedFlightPlan" },
+          "atfcmMeasureLocations": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of ATFCM measure locations associated with the flight"
+          },
+          "flightdata": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Additional flight data entries relevant to the flight plan"
+          }
+        }
+      },
+      "FlightPlan": {
+        "type": "object",
+        "description": "Information about an individual flight plan",
+        "properties": {
+          "aircraftType": { "type": "string", "description": "Type of the aircraft used for the flight" },
+          "callsign": { "type": "string", "description": "Callsign of the aircraft" },
+          "dataUsage": { "type": "string", "description": "Purpose of the data usage" },
+          "departure": { "$ref": "#/components/schemas/AirportInfo", "description": "Information about the departure airport" },
+          "destination": { "$ref": "#/components/schemas/AirportInfo", "description": "Information about the destination airport" },
+          "estimatedOffBlockTime": { "type": "string", "format": "date-time", "description": "Estimated off-block time" },
+          "flightPlanUpdate": { "type": "string", "format": "date-time", "description": "Time when the flight plan was last updated" },
+          "flightType": { "type": "string", "description": "Type of the flight" },
+          "iataFlightNumber": { "type": "string", "description": "IATA flight number" },
+          "icao": { "type": "string", "description": "ICAO flight number" },
+          "icaoRoute": { "type": "string", "description": "ICAO route information" },
+          "flightId": { "type": "string", "description": "Unique identifier for the flight" },
+          "initialEstimatedOffBlockTime": { "type": "string", "format": "date-time", "description": "Initial estimated off-block time" },
+          "lastEventSeqNo": { "type": "integer", "description": "Sequence number of the last recorded event" },
+          "lastEventType": { "type": "string", "description": "Type of the last recorded event" },
+          "registrationMark": { "type": "string", "description": "Registration mark of the aircraft" },
+          "routeGeometry2D": { "$ref": "#/components/schemas/GeoJSONLineString", "description": "2D route geometry represented as a GeoJSON LineString" },
+          "totalEstimatedElapsedTime": { "type": "integer", "description": "Total estimated elapsed time in seconds" },
+          "wakeTurbulenceCategory": { "type": "string", "description": "Wake turbulence category for the aircraft" }
+        },
+        "required": ["flightId", "aircraftType", "departure", "destination", "flightType"]
+      },
+      "AirportInfo": {
+        "type": "object",
+        "description": "Details of an airport",
+        "properties": {
+          "city": { "type": "string", "description": "City where the airport is located" },
+          "country": { "type": "string", "description": "Country where the airport is located" },
+          "iata": { "type": "string", "description": "IATA code of the airport" },
+          "icao": { "type": "string", "description": "ICAO code of the airport" },
+          "name": { "type": "string", "description": "Name of the airport" }
+        },
+        "required": ["city", "country", "iata", "icao", "name"]
+      },
+      "EnvironmentResponse": {
+        "type": "object",
+        "properties": {
+          "bufferGeometry": { "$ref": "#/components/schemas/GeoJSONPolygon", "description": "GeoJSON Polygon of the flight environment" },
+          "route": { "$ref": "#/components/schemas/GeoJSONFeatureCollection", "description": "FeatureCollection of route points" },
+          "airports": { "$ref": "#/components/schemas/GeoJSONFeatureCollection", "description": "FeatureCollection of airports within flight environment" },
+          "isolatedPoints": { "$ref": "#/components/schemas/GeoJSONFeatureCollection", "description": "FeatureCollection of isolated points" },
+          "pathPoints": { "$ref": "#/components/schemas/GeoJSONFeatureCollection", "description": "FeatureCollection of path points" },
+          "paths": { "$ref": "#/components/schemas/GeoJSONFeatureCollection", "description": "FeatureCollection of paths" }
+        }
+      },
+      "AirportFeatureCollection": {
+        "type": "object",
+        "description": "GeoJSON FeatureCollection of airport features",
+        "properties": {
+          "type": { "type": "string", "examples": ["FeatureCollection"], "description": "Type of GeoJSON object" },
+          "cursor": { "type": "string", "description": "Cursor for paginating results or messaging" },
+          "dataUse": { "type": "string", "description": "Information on data usage" },
+          "features": {
+            "type": "array",
+            "description": "Array of airport feature objects",
+            "items": { "$ref": "#/components/schemas/AirportFeature" }
+          }
+        },
+        "required": ["type", "features"]
+      },
+      "AirportFeature": {
+        "type": "object",
+        "description": "GeoJSON Feature representing an airport",
+        "properties": {
+          "type": { "type": "string", "examples": ["Feature"], "description": "Specifies the GeoJSON object type" },
+          "id": { "type": "string", "description": "ICAO designator of the airport" },
+          "geometry": { "$ref": "#/components/schemas/GeoJSONPoint" },
+          "properties": { "$ref": "#/components/schemas/AirportProperties" }
+        },
+        "required": ["type", "id", "geometry", "properties"]
+      },
+      "GeoJSONPoint": {
+        "type": "object",
+        "description": "GeoJSON Point geometry with 2D coordinates",
+        "properties": {
+          "type": { "type": "string", "examples": ["Point"] },
+          "coordinates": {
+            "type": "array",
+            "description": "Longitude and latitude coordinates",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": ["type", "coordinates"]
+      },
+      "AirportProperties": {
+        "type": "object",
+        "description": "Properties of an airport",
+        "properties": {
+          "type": { "type": "string", "examples": ["Airport"], "description": "Specifies the type as Airport" },
+          "city": { "type": "string", "description": "City where the airport is located" },
+          "country": { "type": "string", "description": "Country where the airport is located" },
+          "elevation": { "type": "number", "description": "Elevation of the airport in feet" },
+          "iata": { "type": "string", "description": "IATA code of the airport" },
+          "icao": { "type": "string", "description": "ICAO code of the airport" },
+          "name": { "type": "string", "description": "Name of the airport" },
+          "countryCode": { "type": "string", "description": "Two-letter country code" },
+          "countryCode3": { "type": "string", "description": "Three-letter country code" },
+          "metar": { "type": "string", "description": "METeorological Aerodrome Report (METAR) for the airport" },
+          "metarObservationTs": { "type": "string", "format": "date-time", "description": "Timestamp of the METAR observation" },
+          "taf": { "type": "string", "description": "Terminal Aerodrome Forecast (TAF) for the airport" },
+          "tafObservationTs": { "type": "string", "format": "date-time", "description": "Timestamp of the TAF observation" },
+          "magneticVariationDate": { "type": "string", "format": "date", "description": "Date of the magnetic variation" },
+          "magneticVariationYear": { "type": "integer", "description": "Year of the magnetic variation" },
+          "magneticVariationDegree": { "type": "number", "description": "Degree of the magnetic variation" },
+          "notams": { "type": "array", "description": "Array of NOTAMs at the airport", "items": { "type": "string" } },
+          "acdmMessages": { "type": "array", "description": "Array of ACDM messages", "items": { "type": "string" } },
+          "flightrestrictions": {
+            "type": "array",
+            "description": "Array of current flight restrictions (i.e., less than 10 days old)",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["type", "city", "country", "iata", "icao", "name"]
+      },
+      "GeoJSONFeature": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "examples": ["Feature"] },
+          "geometry": { "$ref": "#/components/schemas/GeoJSONPoint" },
+          "properties": { "type": "object" }
+        }
+      },
+      "GeoJSONFeatureCollection": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "examples": ["FeatureCollection"] },
+          "features": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/GeoJSONFeature" }
+          }
+        }
+      },
+      "GeoJSONLineString": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["LineString"], "description": "Specifies the GeoJSON object type" },
+          "coordinates": {
+            "type": "array",
+            "description": "Array of coordinate pairs defining the route",
+            "items": {
+              "type": "array",
+              "items": [
+                { "type": "number", "description": "Longitude" },
+                { "type": "number", "description": "Latitude" }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "required": ["type", "coordinates"]
+      },
+      "GeoJSONPolygon": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "examples": ["Polygon"] },
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": { "type": "array", "items": { "type": "number" } }
+            },
+            "description": "Array of linear ring coordinate arrays"
+          }
+        }
+      }
+    }
+  }
+}

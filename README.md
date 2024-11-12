@@ -62,7 +62,6 @@ To view the API documentation locally:
 ```bash
 npx redoc-cli bundle openapi/openapi.yaml -o docs/index.html
 ```
-Alternatively, host it on GitHub Pages.
 
 ## Testing and Validation
 Linting the OpenAPI Specification
