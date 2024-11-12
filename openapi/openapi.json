@@ -26,19 +26,35 @@
     },
     {
       "name": "details",
-      "description": "In-Flight Details Services"
+      "description": "In-Flight Details Services",
+      "externalDocs": {
+        "description": "The in-flight details services allow for retrieving flight plan details.",
+        "url": "https://cloud4.aero/v1/in-flight#_in-flight_deatails_services"
+      }
     },
     {
       "name": "env",
-      "description": "In-Flight Environment Services."
+      "description": "In-Flight Environment Services.",
+      "externalDocs": {
+        "description": "The in-flight env services allow for retrieving flight environments.",
+        "url": "https://cloud4.aero/v1/_in-fligh_env_services#"
+      }
     },
     {
       "name": "airport",
-      "description": "In-Flight Airport Services."
+      "description": "In-Flight Airport Services.",
+      "externalDocs": {
+        "description": "The in-flight airport services allow for retrieving airport data.",
+        "url": "https://cloud4.aero/v1/_in-flight_airport_services#"
+      }
     },
     {
       "name": "flight",
-      "description": "In-Flight Flight Services."
+      "description": "In-Flight Flight Services.",
+      "externalDocs": {
+        "description": "The in-flight flight services have two additional fields compared to the in-flight details services.",
+        "url": "https://cloud4.aero/v1/in-flight#"
+      }
     }
   ],
   "paths": {
@@ -895,31 +911,6 @@
           "properties"
         ]
       },
-      "GeoJSONPoint": {
-        "type": "object",
-        "description": "GeoJSON Point geometry with 2D coordinates",
-        "properties": {
-          "type": {
-            "type": "string",
-            "examples": [
-              "Point"
-            ]
-          },
-          "coordinates": {
-            "type": "array",
-            "description": "Longitude and latitude coordinates",
-            "items": {
-              "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2
-          }
-        },
-        "required": [
-          "type",
-          "coordinates"
-        ]
-      },
       "AirportProperties": {
         "type": "object",
         "description": "Properties of an airport",
@@ -1058,6 +1049,31 @@
             }
           }
         }
+      },
+      "GeoJSONPoint": {
+        "type": "object",
+        "description": "GeoJSON Point geometry with 2D coordinates",
+        "properties": {
+          "type": {
+            "type": "string",
+            "examples": [
+              "Point"
+            ]
+          },
+          "coordinates": {
+            "type": "array",
+            "description": "Longitude and latitude coordinates",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "type",
+          "coordinates"
+        ]
       },
       "GeoJSONLineString": {
         "type": "object",
