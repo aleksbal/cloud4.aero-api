@@ -602,6 +602,12 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
       "FlightPlanResponse": {
         "type": "object",
@@ -1135,5 +1141,10 @@
         }
       }
     }
-  }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
 }
