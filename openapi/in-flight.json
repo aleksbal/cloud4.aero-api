@@ -97,7 +97,7 @@
             "schema": {
               "type": "string",
               "examples": [
-                "BAW"
+                "BAW", "*"
               ]
             }
           }
