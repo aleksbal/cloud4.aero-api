@@ -1118,27 +1118,31 @@
       },
       "GeoJSONPolygon": {
         "type": "object",
+        "description": "GeoJSON Polygon geometry with coordinates",
         "properties": {
           "type": {
             "type": "string",
-            "examples": [
-              "Polygon"
-            ]
+            "enum": ["Polygon"],
+            "description": "Specifies the GeoJSON object type"
           },
           "coordinates": {
             "type": "array",
+            "description": "An array of linear ring coordinate arrays",
             "items": {
               "type": "array",
               "items": {
                 "type": "array",
-                "items": {
-                  "type": "number"
-                }
-              }
-            },
-            "description": "Array of linear ring coordinate arrays"
+                "description": "Position as [longitude, latitude] pair",
+                "items": { "type": "number" },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "minItems": 4,
+              "description": "A linear ring must have at least four positions, with the first and last positions identical"
+            }
           }
-        }
+        },
+        "required": ["type", "coordinates"]
       }
     }
   },

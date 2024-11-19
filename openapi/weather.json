@@ -1,0 +1,450 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Cloud4.aero Weather API",
+    "description": "API for retrieving various weather data, including convection, winter weather, METAR, TAF, nowcast satellite data, lightning, and turbulence.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://cloud4.aero/v1/weather",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/convection": {
+      "get": {
+        "summary": "Retrieve convection weather data",
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of convection weather data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/convection/{cursor}": {
+      "get": {
+        "summary": "Retrieve convection weather data with cursor for long polling",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of convection weather data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/winterweather": {
+      "get": {
+        "summary": "Retrieve winter weather data",
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of winter weather data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/winterweather/{cursor}": {
+      "get": {
+        "summary": "Retrieve winter weather data with cursor for long polling",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of winter weather data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metar/{airport}": {
+      "get": {
+        "summary": "Retrieve METAR data for a specific airport",
+        "parameters": [
+          {
+            "name": "airport",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of the airport",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of METAR data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metar/{airport}/{cursor}": {
+      "get": {
+        "summary": "Retrieve METAR data with cursor for long polling",
+        "parameters": [
+          {
+            "name": "airport",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of the airport",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of METAR data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taf/{airport}": {
+      "get": {
+        "summary": "Retrieve TAF data for a specific airport",
+        "parameters": [
+          {
+            "name": "airport",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of the airport",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of TAF data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taf/{airport}/{cursor}": {
+      "get": {
+        "summary": "Retrieve TAF data with cursor for long polling",
+        "parameters": [
+          {
+            "name": "airport",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of the airport",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of TAF data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nowcastsat-europe": {
+      "get": {
+        "summary": "Retrieve Nowcast Satellite data for Europe",
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of Nowcast Satellite data for Europe",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nowcastsat-europe/{cursor}": {
+      "get": {
+        "summary": "Retrieve Nowcast Satellite data for Europe with cursor for long polling",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of Nowcast Satellite data for Europe",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nowcastsat-global": {
+      "get": {
+        "summary": "Retrieve Nowcast Satellite data for Global coverage",
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of Nowcast Satellite data for Global coverage",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nowcastsat-global/{cursor}": {
+      "get": {
+        "summary": "Retrieve Nowcast Satellite data for Global coverage with cursor for long polling",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of Nowcast Satellite data for Global coverage",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lightning": {
+      "get": {
+        "summary": "Retrieve lightning data",
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of lightning data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lightning/{cursor}": {
+      "get": {
+        "summary": "Retrieve lightning data with cursor for long polling",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of lightning data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/turbulence": {
+      "get": {
+        "summary": "Retrieve turbulence data",
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of turbulence data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/turbulence/{cursor}": {
+      "get": {
+        "summary": "Retrieve turbulence data with cursor for long polling",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Cursor for long polling",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GeoJSON FeatureCollection of turbulence data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WeatherFeatureCollection" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WeatherFeatureCollection": {
+        "type": "object",
+        "description": "GeoJSON FeatureCollection containing weather data",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["FeatureCollection"],
+            "description": "Specifies the GeoJSON object type"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Cursor for long polling"
+          },
+          "features": {
+            "type": "array",
+            "description": "Array of weather data features",
+            "items": {
+              "$ref": "#/components/schemas/WeatherFeature"
+            }
+          }
+        },
+        "required": ["type", "features"]
+      },
+      "WeatherFeature": {
+        "type": "object",
+        "description": "A single weather feature represented as a GeoJSON Feature",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Feature"],
+            "description": "Specifies the GeoJSON object type"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the feature"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/GeoJSONPolygon"
+          },
+          "properties": {
+            "type": "object",
+            "description": "Additional data associated with the weather feature",
+            "properties": {
+              "observedProperty": {
+                "type": "string",
+                "description": "Description of the observed weather property"
+              },
+              "resultTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp indicating when the observation result was produced"
+              }
+            },
+            "required": ["observedProperty", "resultTime"]
+          }
+        },
+        "required": ["type", "id", "geometry"]
+      },
+      "GeoJSONPolygon": {
+        "type": "object",
+        "description": "GeoJSON Polygon geometry with coordinates",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Polygon"],
+            "description": "Specifies the GeoJSON object type"
+          },
+          "coordinates": {
+            "type": "array",
+            "description": "An array of linear ring coordinate arrays",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "description": "Position as [longitude, latitude] pair",
+                "items": { "type": "number" },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "minItems": 4,
+              "description": "A linear ring must have at least four positions, with the first and last positions identical"
+            }
+          }
+        },
+        "required": ["type", "coordinates"]
+      }
+    }
+  }
+}
