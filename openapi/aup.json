@@ -1,0 +1,450 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "cloud4.aero AUP API",
+    "description": "The cloud4.aero AUP API.",
+    "contact": {
+      "name": "m-click.aero GmbH",
+      "email": "info@m-click.aero"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://cloud4.aero"
+    }
+  ],
+  "tags": [
+    {
+      "name": "aup"
+    }
+  ],
+  "paths": {
+    "/v1/aup/rsa/{geometries}/{aup-date}": {
+      "get": {
+        "tags": ["aup"],
+        "parameters": [
+          {
+            "name": "geometries",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/geometriesParameter"
+            }
+          },
+          {
+            "name": "aup-date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/aupDateParameter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rsaFeatureCollectionWithCursor"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/aup/cdr/{geometries}/{aup-date}": {
+      "get": {
+        "tags": ["aup"],
+        "parameters": [
+          {
+            "name": "geometries",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/geometriesParameter"
+            }
+          },
+          {
+            "name": "aup-date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/aupDateParameter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cdrFeatureCollectionWithCursor"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "cursor": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32,128}$",
+        "examples": ["23a60edfce620384db73273af6223c7b8973cda83743777f86def0afcb291a42"]
+      },
+      "featureId": {
+        "type": "string",
+        "examples": ["abc.23-def.42"]
+      },
+      "pointCoordinates": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number"
+        },
+        "examples": [
+          [13.3888599, 52.5170365]
+        ]
+      },
+      "lineStringCoordinates": {
+        "type": "array",
+        "minItems": 2,
+        "items": {
+          "$ref": "#/components/schemas/pointCoordinates"
+        },
+        "examples": [
+          [
+            [13.3888599, 52.5170365],
+            [13.3888599, 53.3145926]
+          ]
+        ]
+      },
+      "linearRingCoordinates": {
+        "type": "array",
+        "minItems": 4,
+        "items": {
+          "$ref": "#/components/schemas/pointCoordinates"
+        },
+        "examples": [
+          [
+            [13.3888599, 52.5170365],
+            [13.3888599, 53.3145926],
+            [14.2718281, 52.5170365],
+            [13.3888599, 52.5170365]
+          ]
+        ]
+      },
+      "polygonCoordinates": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "$ref": "#/components/schemas/linearRingCoordinates"
+        }
+      },
+      "pointGeometry": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "Point"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/pointCoordinates"
+          }
+        }
+      },
+      "lineStringGeometry": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "LineString"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/lineStringCoordinates"
+          }
+        }
+      },
+      "polygonGeometry": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "Polygon"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/polygonCoordinates"
+          }
+        }
+      },
+      "rsaFeature": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "Feature"
+          },
+          "id": {
+            "$ref": "#/components/schemas/featureId"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/polygonGeometry"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "validTimeBeginPosition": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "validTimeEndPosition": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "status": {
+                "type": "string"
+              },
+              "lowerLimit": {
+                "type": "string"
+              },
+              "lowerLimitReference": {
+                "type": "string"
+              },
+              "lowerLimitUom": {
+                "type": "string"
+              },
+              "upperLimit": {
+                "type": "string"
+              },
+              "upperLimitReference": {
+                "type": "string"
+              },
+              "upperLimitUom": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "designator": {
+                "type": "string"
+              },
+              "designatorIcao": {
+                "type": "boolean"
+              },
+              "level1": {
+                "type": "boolean"
+              },
+              "flightRestrictions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "active": {
+                      "type": "boolean"
+                    },
+                    "timeInstant": {
+                      "$ref": "#/components/schemas/dateTime"
+                    },
+                    "interpretation": {
+                      "type": "string"
+                    },
+                    "designator": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "hostAirspaces": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "types": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "designator": {
+                      "type": "string"
+                    },
+                    "designatorIcao": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "rsaFeatureCollectionWithCursor": {
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "$ref": "#/components/schemas/cursor"
+          },
+          "type": {
+            "type": "string",
+            "const": "FeatureCollection"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/rsaFeature"
+            }
+          }
+        }
+      },
+      "cdrFeature": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "Feature"
+          },
+          "id": {
+            "$ref": "#/components/schemas/featureId"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/polygonGeometry"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "validTimeBeginPosition": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "validTimeEndPosition": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "status": {
+                "type": "string"
+              },
+              "lowerLimit": {
+                "type": "string"
+              },
+              "lowerLimitReference": {
+                "type": "string"
+              },
+              "lowerLimitUom": {
+                "type": "string"
+              },
+              "upperLimit": {
+                "type": "string"
+              },
+              "upperLimitReference": {
+                "type": "string"
+              },
+              "upperLimitUom": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "routeFormedDesignatorPrefix": {
+                "type": "string"
+              },
+              "routeFormedDesignatorNumber": {
+                "type": "integer"
+              },
+              "routeFormedDesignatorSecondLetter": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              },
+              "routeFormedValidTime": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "startPointNavaidDesignator": {
+                "type": "string"
+              },
+              "startPointNavaidValidTime": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "startPointDesignatedPointDesignator": {
+                "type": "string"
+              },
+              "startPointDesignatedPointType": {
+                "type": "string"
+              },
+              "startPointDesignatedPointValidTime": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "endPointNavaidDesignator": {
+                "type": "string"
+              },
+              "endPointNavaidValidTime": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "endPointDesignatedPointDesignator": {
+                "type": "string"
+              },
+              "endPointDesignatedPointType": {
+                "type": "string"
+              },
+              "endPointDesignatedPointValidTime": {
+                "$ref": "#/components/schemas/dateTime"
+              },
+              "hostAirspaces": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "designator": {
+                      "type": "string"
+                    },
+                    "designatorIcao": {
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "validTime": {
+                      "$ref": "#/components/schemas/dateTime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "cdrFeatureCollectionWithCursor": {
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "$ref": "#/components/schemas/cursor"
+          },
+          "type": {
+            "type": "string",
+            "const": "FeatureCollection"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/cdrFeature"
+            }
+          }
+        }
+      },
+      "dateTime": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "aupDateParameter": {
+        "type": "string",
+        "format": "date",
+        "default": "2024-05-23"
+      },
+      "geometriesParameter": {
+        "type": "string",
+        "enum": ["without-geometries", "with-geometries"]
+      }
+    }
+  }
+}
