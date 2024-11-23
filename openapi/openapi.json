@@ -1,0 +1,46 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Cloud4.aero API",
+    "description": "Comprehensive API covering in-flight, airport, UAP, NOTAM, and weather services.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://cloud4.aero/v1",
+      "description": "Production server"
+    },
+    {
+      "url": "https://staging.cloud4.aero/v1",
+      "description": "Staging server"
+    }
+  ],
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ],
+  "paths": {
+    "/in-flight": {
+      "$ref": "./services/in-flight.json"
+    },
+    "/uap": {
+      "$ref": "./services/aup.json"
+    },
+    "/notams": {
+      "$ref": "./services/notam.json"
+    },
+    "/weather": {
+      "$ref": "./services/weather.json"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  }
+}
+

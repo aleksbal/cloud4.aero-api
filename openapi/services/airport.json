@@ -1,0 +1,20 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Cloud4.aero Airport API",
+    "description": "Aorport API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://cloud4.aero/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+  },
+  "components": {
+    "schemas": {
+    }
+  }
+}

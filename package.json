@@ -1,0 +1,17 @@
+{
+  "name": "cloud4.aero",
+  "version": "1.0.0",
+  "description": "This repository contains the OpenAPI 3.1 specification for the **Cloud4.aero API**, which provides endpoints for retrieving in-flight data, flight plans, airport data, and environmental information.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "swagger-ui": "^5.18.2"
+  }
+}

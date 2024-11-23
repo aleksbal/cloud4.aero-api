@@ -36,7 +36,12 @@
             "description": "The geometry of the feature, which can be a Point, LineString, or Polygon"
           },
           "properties": {
-            "type": "object"
+            "type": "object",
+            "description": "Flexible properties of the feature",
+            "additionalProperties": {
+              "type": "string",
+              "description": "Any name-value pair, where the value is a string"
+            }
           }
         }
       },
@@ -133,6 +138,30 @@
         "required": [
           "type",
           "coordinates"
+        ]
+      },
+      "AirportFeature": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Feature" },
+          {
+            "type": "object",
+            "description": "Just an example how to inherit the Feature defined above",
+            "properties": {
+              "properties": {
+                "type": "object",
+                "description": "Properties specific to airport features",
+                "properties": {
+                  "name": { "type": "string", "description": "Name of the airport" },
+                  "iata": { "type": "string", "description": "IATA code of the airport" },
+                  "icao": { "type": "string", "description": "ICAO code of the airport" },
+                  "country": { "type": "string", "description": "Country where the airport is located" },
+                  "city": { "type": "string", "description": "City where the airport is located" },
+                  "elevation": { "type": "number", "description": "Elevation of the airport in feet" }
+                },
+                "required": ["name", "iata", "icao", "country", "city"]
+              }
+            }
+          }
         ]
       }
     }

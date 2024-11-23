@@ -904,7 +904,7 @@
             "description": "ICAO designator of the airport"
           },
           "geometry": {
-            "$ref": "#/components/schemas/GeoJSONPoint"
+            "$ref": "../schemas/geo.json#/components/schemas/Point"
           },
           "properties": {
             "$ref": "#/components/schemas/AirportProperties"

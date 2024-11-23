@@ -39,3 +39,48 @@ out/
 tmp
 build
 openapitools.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.pid.lock
+
+# Dependency directories
+node_modules/
+
+# Build directories
+dist/
+build/
+
+# Static file output
+public/
+
+# Swagger UI files (optional, if copying assets into `public/` or similar)
+swagger-ui.css
+swagger-ui-bundle.js
+swagger-ui-standalone-preset.js
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
