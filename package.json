@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "http-proxy-middleware": "^2.0.6",
     "swagger-ui": "^5.18.2"
   }
 }

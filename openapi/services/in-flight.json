@@ -11,8 +11,8 @@
   },
   "servers": [
     {
-      "url": "https://cloud4.aero/v1/in-flight",
-      "description": "cloud4.aero production server"
+      "url": "/api",
+      "description": "Proxy to the API server via Swagger UI server"
     }
   ],
   "tags": [
@@ -904,7 +904,7 @@
             "description": "ICAO designator of the airport"
           },
           "geometry": {
-            "$ref": "../schemas/geo.json#/components/schemas/Point"
+            "$ref": "#/components/schemas/GeoJSONPoint"
           },
           "properties": {
             "$ref": "#/components/schemas/AirportProperties"
