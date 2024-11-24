@@ -7,12 +7,16 @@
   },
   "servers": [
     {
+      "url": "/api",
+      "description": "Proxy to the API server via Swagger UI server"
+    },
+    {
       "url": "https://cloud4.aero/v1",
       "description": "Production server"
     }
   ],
   "paths": {
-    "/notam/icao/{status}/{designator}": {
+    "/v1/notam/icao/{status}/{designator}": {
       "get": {
         "summary": "Retrieve NOTAMs by ICAO designator",
         "parameters": [
@@ -33,7 +37,10 @@
             "description": "Four-letter ICAO designator (FIR, UIR, or airport)",
             "schema": {
               "type": "string",
-              "pattern": "^[A-Z]{4}$"
+              "pattern": "^[A-Z]{4}$",
+              "examples": [
+                "EGLL", "EDDB"
+              ]
             }
           }
         ],
@@ -49,7 +56,7 @@
         }
       }
     },
-    "/notam/circle/{status}/{coordinate}/{radius}": {
+    "/v1/notam/circle/{status}/{coordinate}/{radius}": {
       "get": {
         "summary": "Retrieve NOTAMs by radius around coordinates",
         "parameters": [
@@ -95,7 +102,7 @@
         }
       }
     },
-    "/notam/route/{status}/{line}/{radius}": {
+    "/v1/notam/route/{status}/{line}/{radius}": {
       "get": {
         "summary": "Retrieve NOTAMs along a route",
         "parameters": [
@@ -141,7 +148,7 @@
         }
       }
     },
-    "/notam/bbox/{status}/{bbox}": {
+    "/v1/notam/bbox/{status}/{bbox}": {
       "get": {
         "summary": "Retrieve NOTAMs within a bounding box",
         "parameters": [
@@ -179,6 +186,12 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
       "NOTAMFeatureCollection": {
         "type": "object",
@@ -270,5 +283,10 @@
         "required": ["type", "coordinates"]
       }
     }
-  }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
 }

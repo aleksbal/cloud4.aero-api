@@ -13,6 +13,10 @@
     {
       "url": "/api",
       "description": "Proxy to the API server via Swagger UI server"
+    },
+    {
+      "url": "https://cloud4.aero/v1",
+      "description": "Production server"
     }
   ],
   "tags": [
@@ -58,7 +62,7 @@
     }
   ],
   "paths": {
-    "/in-flight/match/citypair/{departure}/{arrival}/{icao_airline}": {
+    "/v1/in-flight/match/citypair/{departure}/{arrival}/{icao_airline}": {
       "get": {
         "tags": [
           "match"
@@ -116,7 +120,7 @@
         }
       }
     },
-    "/in-flight/match/aircraft/{identifier}": {
+    "/v1/in-flight/match/aircraft/{identifier}": {
       "get": {
         "tags": [
           "match"
@@ -151,7 +155,7 @@
         }
       }
     },
-    "/in-flight/match/flight/{iata_airline}/{flightId}": {
+    "/v1/in-flight/match/flight/{iata_airline}/{flightId}": {
       "get": {
         "tags": [
           "match"
@@ -200,7 +204,7 @@
         }
       }
     },
-    "/details/{flightId}": {
+    "/v1/details/{flightId}": {
       "get": {
         "tags": [
           "details"
@@ -251,7 +255,7 @@
         }
       }
     },
-    "/details/{flightId}/{cursor}": {
+    "/v1/details/{flightId}/{cursor}": {
       "get": {
         "tags": [
           "details"
@@ -314,7 +318,7 @@
         }
       }
     },
-    "/env/{flightId}/{radius}": {
+    "/v1/env/{flightId}/{radius}": {
       "get": {
         "tags": [
           "env"
@@ -370,7 +374,7 @@
         }
       }
     },
-    "/env/{radius}/{EOBT}/{departure}/{destination}/{icao_route}": {
+    "/v1/env/{radius}/{EOBT}/{departure}/{destination}/{icao_route}": {
       "get": {
         "tags": [
           "env"
@@ -445,7 +449,7 @@
         }
       }
     },
-    "/in-flight/airport/{icao_designators}": {
+    "/v1/in-flight/airport/{icao_designators}": {
       "get": {
         "tags": [
           "airport"
@@ -480,7 +484,7 @@
         }
       }
     },
-    "/in-flight/airport/{icao_designators}/{cursor}": {
+    "/v1/in-flight/airport/{icao_designators}/{cursor}": {
       "get": {
         "tags": [
           "airport"
@@ -527,7 +531,7 @@
         }
       }
     },
-    "/in-flight/flight/{flightId}": {
+    "/v1/in-flight/flight/{flightId}": {
       "get": {
         "tags": [
           "flight"
@@ -559,7 +563,7 @@
         }
       }
     },
-    "/in-flight/flight/{flightId}/{cursor}": {
+    "/v1/in-flight/flight/{flightId}/{cursor}": {
       "get": {
         "tags": [
           "flight"

@@ -7,12 +7,16 @@
   },
   "servers": [
     {
-      "url": "https://cloud4.aero/v1/weather",
+      "url": "/api",
+      "description": "Proxy to the API server via Swagger UI server"
+    },
+    {
+      "url": "https://cloud4.aero/v1",
       "description": "Production server"
     }
   ],
   "paths": {
-    "/convection": {
+    "/v1/weather/convection": {
       "get": {
         "summary": "Retrieve convection weather data",
         "responses": {
@@ -27,7 +31,7 @@
         }
       }
     },
-    "/convection/{cursor}": {
+    "/v1/weather/convection/{cursor}": {
       "get": {
         "summary": "Retrieve convection weather data with cursor for long polling",
         "parameters": [
@@ -51,7 +55,7 @@
         }
       }
     },
-    "/winterweather": {
+    "/v1/weather/winterweather": {
       "get": {
         "summary": "Retrieve winter weather data",
         "responses": {
@@ -66,7 +70,7 @@
         }
       }
     },
-    "/winterweather/{cursor}": {
+    "/v1/weather/winterweather/{cursor}": {
       "get": {
         "summary": "Retrieve winter weather data with cursor for long polling",
         "parameters": [
@@ -90,7 +94,7 @@
         }
       }
     },
-    "/metar/{airport}": {
+    "/v1/weather/metar/{airport}": {
       "get": {
         "summary": "Retrieve METAR data for a specific airport",
         "parameters": [
@@ -114,7 +118,7 @@
         }
       }
     },
-    "/metar/{airport}/{cursor}": {
+    "/v1/weather/metar/{airport}/{cursor}": {
       "get": {
         "summary": "Retrieve METAR data with cursor for long polling",
         "parameters": [
@@ -145,7 +149,7 @@
         }
       }
     },
-    "/taf/{airport}": {
+    "/v1/weather/taf/{airport}": {
       "get": {
         "summary": "Retrieve TAF data for a specific airport",
         "parameters": [
@@ -169,7 +173,7 @@
         }
       }
     },
-    "/taf/{airport}/{cursor}": {
+    "/v1/weather/taf/{airport}/{cursor}": {
       "get": {
         "summary": "Retrieve TAF data with cursor for long polling",
         "parameters": [
@@ -200,7 +204,7 @@
         }
       }
     },
-    "/nowcastsat-europe": {
+    "/v1/weather/nowcastsat-europe": {
       "get": {
         "summary": "Retrieve Nowcast Satellite data for Europe",
         "responses": {
@@ -215,7 +219,7 @@
         }
       }
     },
-    "/nowcastsat-europe/{cursor}": {
+    "/v1/weather/nowcastsat-europe/{cursor}": {
       "get": {
         "summary": "Retrieve Nowcast Satellite data for Europe with cursor for long polling",
         "parameters": [
@@ -239,7 +243,7 @@
         }
       }
     },
-    "/nowcastsat-global": {
+    "/v1/weather/nowcastsat-global": {
       "get": {
         "summary": "Retrieve Nowcast Satellite data for Global coverage",
         "responses": {
@@ -254,7 +258,7 @@
         }
       }
     },
-    "/nowcastsat-global/{cursor}": {
+    "/v1/weather/nowcastsat-global/{cursor}": {
       "get": {
         "summary": "Retrieve Nowcast Satellite data for Global coverage with cursor for long polling",
         "parameters": [
@@ -278,7 +282,7 @@
         }
       }
     },
-    "/lightning": {
+    "/v1/weather/lightning": {
       "get": {
         "summary": "Retrieve lightning data",
         "responses": {
@@ -293,7 +297,7 @@
         }
       }
     },
-    "/lightning/{cursor}": {
+    "/v1/weather/lightning/{cursor}": {
       "get": {
         "summary": "Retrieve lightning data with cursor for long polling",
         "parameters": [
@@ -317,7 +321,7 @@
         }
       }
     },
-    "/turbulence": {
+    "/v1/weather/turbulence": {
       "get": {
         "summary": "Retrieve turbulence data",
         "responses": {
@@ -332,7 +336,7 @@
         }
       }
     },
-    "/turbulence/{cursor}": {
+    "/v1/weather/turbulence/{cursor}": {
       "get": {
         "summary": "Retrieve turbulence data with cursor for long polling",
         "parameters": [
@@ -358,6 +362,12 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
       "WeatherFeatureCollection": {
         "type": "object",
@@ -446,5 +456,10 @@
         "required": ["type", "coordinates"]
       }
     }
-  }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
 }

@@ -79,7 +79,7 @@ app.use((req, res, next) => {
 
 // Reverse proxy to API server
 app.use('/api', createProxyMiddleware({
-  target: 'https://cloud4.aero/v1', // Replace with your API server URL
+  target: 'https://cloud4.aero', // Replace with your API server URL
   changeOrigin: true,
   logLevel: 'debug',
   pathRewrite: {

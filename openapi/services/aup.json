@@ -11,7 +11,12 @@
   },
   "servers": [
     {
-      "url": "https://cloud4.aero"
+      "url": "/api",
+      "description": "Proxy to the API server via Swagger UI server"
+    },
+    {
+      "url": "https://cloud4.aero/v1",
+      "description": "Production server"
     }
   ],
   "tags": [
@@ -90,6 +95,12 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
       "cursor": {
         "type": "string",
@@ -446,5 +457,10 @@
         "enum": ["without-geometries", "with-geometries"]
       }
     }
-  }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
 }

@@ -7,6 +7,10 @@
   },
   "servers": [
     {
+      "url": "/api",
+      "description": "Proxy to the API server via Swagger UI server"
+    },
+    {
       "url": "https://cloud4.aero/v1",
       "description": "Production server"
     }
@@ -14,7 +18,18 @@
   "paths": {
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
     }
-  }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
 }

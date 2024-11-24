@@ -3,23 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swagger UI</title>
+  <title>API Documentation</title>
   <link rel="stylesheet" href="/swagger-ui/swagger-ui.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #selector-container {
+      margin: 20px;
+    }
+    #swagger-ui {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
+<div id="selector-container">
+  <label for="specSelector">Select API Specification:</label>
+  <select id="specSelector" onchange="loadSpec()">
+    <option value="">-- Select an API Specification --</option>
+    <option value="/openapi/services/in-flight.json">In-Flight API</option>
+    <option value="/openapi/services/notam.json">NOTAM API</option>
+    <option value="/openapi/services/adr.json">ADR API</option>
+    <option value="/openapi/services/weather.json">Weather API</option>
+    <option value="/openapi/services/aup.json">AUP API</option>
+    <option value="/openapi/services/airport.json">Airport API</option>
+  </select>
+</div>
+
 <div id="swagger-ui"></div>
+
 <script src="/swagger-ui/swagger-ui-bundle.js"></script>
 <script src="/swagger-ui/swagger-ui-standalone-preset.js"></script>
 <script>
-  const ui = SwaggerUIBundle({
-    url: '/openapi/services/in-flight.json', // Point to your OpenAPI spec
-    dom_id: '#swagger-ui',
-    presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ],
-    layout: "StandaloneLayout"
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const specUrl = urlParams.get("spec");
+
+    if (specUrl) {
+      initializeSwaggerUI(specUrl);
+    } else {
+      alert("Please select an API specification from the dropdown.");
+    }
   });
+
+  function loadSpec() {
+    const specSelector = document.getElementById("specSelector");
+    const selectedSpec = specSelector.value;
+
+    if (selectedSpec) {
+      initializeSwaggerUI(selectedSpec);
+    }
+  }
+
+  function initializeSwaggerUI(specUrl) {
+    SwaggerUIBundle({
+      url: specUrl,
+      dom_id: "#swagger-ui",
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+      ],
+      layout: "StandaloneLayout",
+      deepLinking: true
+    });
+  }
 </script>
 </body>
 </html>
+
