@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Cloud4.aero NOTAM API ADR",
-    "description": "API for ADR",
+    "title": "ADR Flightmatch API",
+    "description": "ADR Flightmatch Services API for retrieving flight plans and IDs with different ways of filtering.",
     "version": "1.0.0"
   },
   "servers": [
@@ -12,24 +12,201 @@
     },
     {
       "url": "https://cloud4.aero/v1",
-      "description": "Production server"
+      "description": "Production Server"
     }
   ],
   "paths": {
-  },
-  "components": {
-    "securitySchemes": {
-      "BasicAuth": {
-        "type": "http",
-        "scheme": "basic"
+    "/v1/adr/flightmatch/citypair/{departure}/{arrival}/{icao_airline}": {
+      "get": {
+        "summary": "Match by departure, arrival, and ICAO airline",
+        "description": "Retrieve flight plans or IDs based on city pairs and optional ICAO airline.",
+        "parameters": [
+          {
+            "name": "departure",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of departure airport, or *",
+            "schema": {
+              "type": "string",
+              "examples": ["EDDB", "*"]
+            }
+          },
+          {
+            "name": "arrival",
+            "in": "path",
+            "required": true,
+            "description": "IATA or ICAO designator of arrival airport, or *",
+            "schema": {
+              "type": "string",
+              "examples": ["LHR", "*"]
+            }
+          },
+          {
+            "name": "icao_airline",
+            "in": "path",
+            "required": true,
+            "description": "Three-letter ICAO airline code, or *",
+            "schema": {
+              "type": "string",
+              "examples": ["BAW", "*"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matched flight plans",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FlightPlanResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to invalid parameters"
+          },
+          "404": {
+            "description": "No matches found"
+          }
+        }
       }
     },
-    "schemas": {
+    "/v1/adr/flightmatch/aircraft/{identifier}": {
+      "get": {
+        "summary": "Match by aircraft identifier",
+        "description": "Retrieve flights based on aircraft identifier, such as callsign, ICAO hex code, or registration mark.",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "description": "Aircraft identifier (e.g., callsign, ICAO hex code, registration mark)",
+            "schema": {
+              "type": "string",
+              "examples": ["BAW981", "406091", "GEUYE"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matched flight plans",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FlightPlanResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to invalid parameters"
+          },
+          "404": {
+            "description": "No matches found"
+          }
+        }
+      }
+    },
+    "/v1/adr/flightmatch/flight/{identifier}": {
+      "get": {
+        "summary": "Match by an identifier which could be either IATA airline code or flight number",
+        "description": "Match by an identifier which could be either IATA airline code or flight number",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "description": "IATA airline code or flight number",
+            "schema": {
+              "type": "string",
+              "examples": ["BA981"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matched flight plans",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FlightPlanResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to invalid parameters"
+          },
+          "404": {
+            "description": "No matches found"
+          }
+        }
+      }
     }
   },
-  "security": [
-    {
-      "BasicAuth": []
+  "components": {
+    "schemas": {
+      "FlightPlanResponse": {
+        "type": "object",
+        "properties": {
+          "flightPlans": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FlightPlan" }
+          }
+        },
+        "required": ["flightPlans"]
+      },
+      "FlightPlan": {
+        "type": "object",
+        "properties": {
+          "aircraftType": { "type": "string", "description": "Type of the aircraft used for the flight" },
+          "callsign": { "type": "string", "description": "Callsign of the aircraft" },
+          "dataUsage": { "type": "string", "description": "Purpose of the data usage" },
+          "departure": { "$ref": "#/components/schemas/AirportInfo", "description": "Information about the departure airport" },
+          "destination": { "$ref": "#/components/schemas/AirportInfo", "description": "Information about the destination airport" },
+          "estimatedOffBlockTime": { "type": "string", "format": "date-time", "description": "Estimated off-block time" },
+          "flightPlanUpdate": { "type": "string", "format": "date-time", "description": "Time when the flight plan was last updated" },
+          "flightType": { "type": "string", "description": "Type of the flight (e.g., SCHEDULED)" },
+          "iataFlightNumber": { "type": "string", "description": "IATA flight number" },
+          "icao": { "type": "string", "description": "ICAO flight number" },
+          "icaoRoute": { "type": "string", "description": "ICAO route information" },
+          "ifplId": { "type": "string", "description": "Unique identifier for the flight plan (IFPL ID)" },
+          "initialEstimatedOffBlockTime": { "type": "string", "format": "date-time", "description": "Initial estimated off-block time" },
+          "lastEventSeqNo": { "type": "integer", "description": "Sequence number of the last recorded event" },
+          "lastEventType": { "type": "string", "description": "Type of the last recorded event (e.g., CHG)" },
+          "registrationMark": { "type": "string", "description": "Registration mark of the aircraft" },
+          "routeGeometry2D": { "$ref": "#/components/schemas/GeoJSONLineString", "description": "2D route geometry represented as a GeoJSON LineString" },
+          "totalEstimatedElapsedTime": { "type": "integer", "description": "Total estimated elapsed time in seconds" },
+          "wakeTurbulenceCategory": { "type": "string", "description": "Wake turbulence category for the aircraft" }
+        },
+        "required": ["aircraftType", "callsign", "departure", "destination"]
+      },
+      "AirportInfo": {
+        "type": "object",
+        "properties": {
+          "city": { "type": "string", "description": "City where the airport is located" },
+          "country": { "type": "string", "description": "Country where the airport is located" },
+          "iata": { "type": "string", "description": "IATA code of the airport" },
+          "icao": { "type": "string", "description": "ICAO code of the airport" },
+          "name": { "type": "string", "description": "Name of the airport" }
+        },
+        "required": ["city", "country", "iata", "icao", "name"]
+      },
+      "GeoJSONLineString": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["LineString"], "description": "Specifies the GeoJSON object type" },
+          "coordinates": {
+            "type": "array",
+            "description": "Array of coordinate pairs defining the route",
+            "items": {
+              "type": "array",
+              "items": [
+                { "type": "number", "description": "Longitude" },
+                { "type": "number", "description": "Latitude" }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "required": ["type", "coordinates"]
+      }
     }
-  ]
+  }
 }
