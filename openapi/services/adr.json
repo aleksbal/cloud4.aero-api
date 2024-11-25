@@ -140,6 +140,12 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
       "FlightPlanResponse": {
         "type": "object",
@@ -208,5 +214,10 @@
         "required": ["type", "coordinates"]
       }
     }
-  }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
 }
