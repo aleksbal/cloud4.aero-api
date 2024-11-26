@@ -64,6 +64,9 @@
           "400": {
             "description": "Bad request due to invalid parameters"
           },
+          "401": {
+            "description": "Request lacks valid authentication credentials"
+          },
           "404": {
             "description": "No matches found"
           }
@@ -98,6 +101,9 @@
           "400": {
             "description": "Bad request due to invalid parameters"
           },
+          "401": {
+            "description": "Request lacks valid authentication credentials"
+          },
           "404": {
             "description": "No matches found"
           }
@@ -131,6 +137,9 @@
           },
           "400": {
             "description": "Bad request due to invalid parameters"
+          },
+          "401": {
+            "description": "Request lacks valid authentication credentials"
           },
           "404": {
             "description": "No matches found"
