@@ -122,6 +122,14 @@ onProxyReq: (proxyReq, req) => {
 // Serve Swagger UI assets
 app.use('/swagger-ui', express.static(path.join(__dirname, 'node_modules/swagger-ui/dist')));
 
+// Serve static files like index.html from the root directory
+app.use(express.static(path.join(__dirname)));
+
+// Fallback to serve index.html if no API match
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
