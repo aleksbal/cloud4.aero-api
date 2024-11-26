@@ -1,17 +1,19 @@
-# Step 1: Use a lightweight Node.js base image
-FROM node:18-alpine
+FROM node:18-slim
 
-# Step 2: Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Step 3: Copy application files to the container
-COPY . .
+# Copy package.json and package-lock.json first to leverage Docker caching
+COPY package*.json ./
 
-# Step 4: Install dependencies
+# Install dependencies
 RUN npm install
 
-# Step 5: Expose the port the app runs on
+# Copy the rest of the application
+COPY . .
+
+# Expose the application port
 EXPOSE 3000
 
-# Step 6: Define the command to run the server
+# Start the application
 CMD ["node", "server.js"]
