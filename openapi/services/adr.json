@@ -1,8 +1,12 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "ADR Flightmatch API",
-    "description": "ADR Flightmatch Services API for retrieving flight plans and IDs with different ways of filtering.",
+    "title": "cloud4.aero ADR Flightmatch API",
+    "description": "Aerodromes Flightmatch Services for retrieving flight plans and IDs with different ways of filtering.",
+    "contact": {
+      "name": "m-click.aero GmbH",
+      "email": "info@m-click.aero"
+    },
     "version": "1.0.0"
   },
   "servers": [
@@ -11,7 +15,7 @@
       "description": "Proxy to the API server via Swagger UI server"
     },
     {
-      "url": "https://cloud4.aero/v1",
+      "url": "https://cloud4.aero",
       "description": "Production Server"
     }
   ],

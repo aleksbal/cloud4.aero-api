@@ -1,8 +1,12 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Cloud4.aero Weather API",
+    "title": "cloud4.aero Weather API",
     "description": "API for retrieving various weather data, including convection, winter weather, METAR, TAF, nowcast satellite data, lightning, and turbulence.",
+    "contact": {
+      "name": "m-click.aero GmbH",
+      "email": "info@m-click.aero"
+    },
     "version": "1.0.0"
   },
   "servers": [
@@ -11,7 +15,7 @@
       "description": "Proxy to the API server via Swagger UI server"
     },
     {
-      "url": "https://cloud4.aero/v1",
+      "url": "https://cloud4.aero",
       "description": "Production server"
     }
   ],

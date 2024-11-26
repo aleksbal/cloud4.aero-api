@@ -1,8 +1,12 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Cloud4.aero NOTAM API",
+    "title": "cloud4.aero NOTAM API",
     "description": "API for retrieving NOTAMs with different filters.",
+    "contact": {
+      "name": "m-click.aero GmbH",
+      "email": "info@m-click.aero"
+    },
     "version": "1.0.0"
   },
   "servers": [
@@ -11,7 +15,7 @@
       "description": "Proxy to the API server via Swagger UI server"
     },
     {
-      "url": "https://cloud4.aero/v1",
+      "url": "https://cloud4.aero",
       "description": "Production server"
     }
   ],

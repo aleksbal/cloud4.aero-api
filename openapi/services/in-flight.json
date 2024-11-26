@@ -15,7 +15,7 @@
       "description": "Proxy to the API server via Swagger UI server"
     },
     {
-      "url": "https://cloud4.aero/v1",
+      "url": "https://cloud4.aero",
       "description": "Production server"
     }
   ],
