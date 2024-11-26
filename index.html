@@ -7,67 +7,83 @@
   <link rel="stylesheet" href="/swagger-ui/swagger-ui.css">
   <style>
     body {
+      display: flex;
+      margin: 0;
       font-family: Arial, sans-serif;
     }
-    #selector-container {
-      margin: 20px;
+
+    #sidebar {
+      width: 200px;
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-right: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
     }
+
+    #sidebar a {
+      margin: 5px 0;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    #sidebar a:hover {
+      text-decoration: underline;
+    }
+
     #swagger-ui {
-      margin-top: 20px;
+      flex: 1;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
-<div id="selector-container">
-  <label for="specSelector">Select Cloud4.aero API Specification:</label>
-  <select id="specSelector" onchange="loadSpec()">
-    <option value="">-- Select an API Specification --</option>
-    <option value="/openapi/services/in-flight.json">In-Flight API</option>
-    <option value="/openapi/services/notam.json">NOTAM API</option>
-    <option value="/openapi/services/adr.json">ADR API</option>
-    <option value="/openapi/services/weather.json">Weather API</option>
-    <option value="/openapi/services/aup.json">AUP API</option>
-    <option value="/openapi/services/airport.json">Airport API</option>
-  </select>
-</div>
+<!-- Sidebar -->
+<div id="sidebar"></div>
 
+<!-- Swagger UI -->
 <div id="swagger-ui"></div>
 
 <script src="/swagger-ui/swagger-ui-bundle.js"></script>
 <script src="/swagger-ui/swagger-ui-standalone-preset.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const specUrl = urlParams.get("spec");
+  // List of OpenAPI specifications
+  const specs = [
+    { name: "ADR API", url: "/openapi/services/adr.json" },
+    { name: "Airport API", url: "/openapi/services/airport.json" },
+    { name: "AUP API", url: "/openapi/services/aup.json" },
+    { name: "In-Flight API", url: "/openapi/services/in-flight.json" },
+    { name: "NOTAM API", url: "/openapi/services/notam.json" },
+    { name: "Weather API", url: "/openapi/services/weather.json" },
+  ];
 
-    if (specUrl) {
-      initializeSwaggerUI(specUrl);
-    } else {
-      alert("Please select an API specification from the dropdown.");
-    }
+  // Sort the specifications alphabetically
+  specs.sort((a, b) => a.name.localeCompare(b.name));
+
+  // Populate the sidebar
+  const sidebar = document.getElementById("sidebar");
+  specs.forEach((spec, index) => {
+    const link = document.createElement("a");
+    link.href = `?spec=${encodeURIComponent(spec.url)}`;
+    link.textContent = spec.name;
+    sidebar.appendChild(link);
   });
 
-  function loadSpec() {
-    const specSelector = document.getElementById("specSelector");
-    const selectedSpec = specSelector.value;
+  // Get the spec URL from the query string or load the first item by default
+  const urlParams = new URLSearchParams(window.location.search);
+  const specUrl = urlParams.get("spec") || specs[0].url;
 
-    if (selectedSpec) {
-      initializeSwaggerUI(selectedSpec);
-    }
-  }
-
-  function initializeSwaggerUI(specUrl) {
-    SwaggerUIBundle({
-      url: specUrl,
-      dom_id: "#swagger-ui",
-      presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIStandalonePreset
-      ],
-      layout: "StandaloneLayout",
-      deepLinking: true
-    });
-  }
+  // Render Swagger UI for the selected or default specification
+  const ui = SwaggerUIBundle({
+    url: specUrl,
+    dom_id: '#swagger-ui',
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    layout: "StandaloneLayout",
+  });
 </script>
 </body>
 </html>
