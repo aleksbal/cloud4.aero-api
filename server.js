@@ -25,7 +25,8 @@ const specs = {
   adr: '/openapi/services/adr.json',
   weather: '/openapi/services/weather.json',
   aup: '/openapi/services/aup.json',
-  airport: '/openapi/services/airport.json'
+  airport: '/openapi/services/airport.json',
+  capping: '/openapi/services/capping.json'
 };
 
 Object.entries(specs).forEach(([key, specPath]) => {
@@ -140,6 +141,7 @@ app.listen(PORT, () => {
     - Weather: http://localhost:${PORT}/docs/weather
     - AUP: http://localhost:${PORT}/docs/aup
     - Airport: http://localhost:${PORT}/docs/airport
+    - Capping: http://localhost:${PORT}/docs/capping
     API Proxy is running at http://localhost:${PORT}/api/
   `);
 });
