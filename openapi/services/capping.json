@@ -1,0 +1,294 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Flight Level Capping Service",
+    "description": "API for retrieving flight level capping data as GeoJSON FeatureCollection.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://cloud4.aero/v1",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/flight-level-capping/{flightId}/{radius}": {
+      "get": {
+        "summary": "Retrieve flight level capping data",
+        "description": "Fetches flight level capping information for a specific flight and radius.",
+        "operationId": "getFlightLevelCapping",
+        "parameters": [
+          {
+            "name": "flightId",
+            "in": "path",
+            "description": "Unique flight identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "radius",
+            "in": "path",
+            "description": "Search radius in nautical miles (NM)",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with flight level capping data in GeoJSON format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeatureCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to invalid input"
+          },
+          "404": {
+            "description": "No data found for the given parameters"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FeatureCollection": {
+        "type": "object",
+        "description": "GeoJSON FeatureCollection containing flight level capping data",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["FeatureCollection"]
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Pagination cursor for retrieving additional data"
+          },
+          "dataUse": {
+            "type": "string",
+            "description": "Data usage disclaimer"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feature"
+            }
+          }
+        }
+      },
+      "Feature": {
+        "type": "object",
+        "description": "A GeoJSON Feature representing flight routes, restrictions, or RSAs",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Feature"]
+          },
+          "id": {
+            "type": "string",
+            "description": "Optional feature ID",
+            "nullable": true
+          },
+          "geometry": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/Point" },
+              { "$ref": "#/components/schemas/LineString" },
+              { "$ref": "#/components/schemas/Polygon" }
+            ],
+            "description": "The geometry of the feature, which can be a Point, LineString, or Polygon"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/Properties"
+          }
+        }
+      },
+      "Point": {
+        "type": "object",
+        "description": "GeoJSON Point geometry with 2D coordinates",
+        "properties": {
+          "type": {
+            "type": "string",
+            "examples": [
+              "Point"
+            ]
+          },
+          "coordinates": {
+            "type": "array",
+            "description": "Longitude and latitude coordinates",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "type",
+          "coordinates"
+        ]
+      },
+      "LineString": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "LineString"
+            ],
+            "description": "Specifies the GeoJSON object type"
+          },
+          "coordinates": {
+            "type": "array",
+            "description": "Array of coordinate pairs defining the route",
+            "items": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "number",
+                  "description": "Longitude"
+                },
+                {
+                  "type": "number",
+                  "description": "Latitude"
+                }
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "required": [
+          "type",
+          "coordinates"
+        ]
+      },
+      "Polygon": {
+        "type": "object",
+        "description": "GeoJSON Polygon geometry with coordinates",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Polygon"
+            ],
+            "description": "Specifies the GeoJSON object type"
+          },
+          "coordinates": {
+            "type": "array",
+            "description": "An array of linear ring coordinate arrays",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "description": "Position as [longitude, latitude] pair",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "minItems": 4,
+              "description": "A linear ring must have at least four positions, with the first and last positions identical"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "coordinates"
+        ]
+      },
+      "Properties": {
+        "type": "object",
+        "description": "Feature metadata defining restrictions or flight path details",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of feature, e.g., FlightRoute, RSA, Restriction"
+          },
+          "validTimeBeginPosition": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTimeEndPosition": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "processingIndicator": {
+            "type": "string",
+            "nullable": true,
+            "description": "Processing indicator (e.g., RAD_DCT, TFR)"
+          },
+          "usage": {
+            "type": "string",
+            "nullable": true,
+            "description": "Operational usage type"
+          },
+          "instruction": {
+            "type": "string",
+            "nullable": true,
+            "description": "Instructions for flight planning"
+          },
+          "annotation": {
+            "type": "string",
+            "nullable": true,
+            "description": "Additional information"
+          },
+          "lowerLimit": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Lower altitude limit"
+          },
+          "lowerLimitUom": {
+            "type": "string",
+            "nullable": true,
+            "enum": ["FL", "M", "FT"],
+            "description": "Unit of measurement for lower limit"
+          },
+          "lowerLimitType": {
+            "type": "string",
+            "nullable": true,
+            "enum": ["Level", "Ceiling", "Ground"],
+            "description": "Reference type for lower limit"
+          },
+          "upperLimit": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Upper altitude limit"
+          },
+          "upperLimitUom": {
+            "type": "string",
+            "nullable": true,
+            "enum": ["FL", "M", "FT"],
+            "description": "Unit of measurement for upper limit"
+          },
+          "upperLimitType": {
+            "type": "string",
+            "nullable": true,
+            "enum": ["Level", "Ceiling", "Unlimited"],
+            "description": "Reference type for upper limit"
+          },
+          "designator": {
+            "type": "string",
+            "nullable": true,
+            "description": "Designator for the restriction area"
+          }
+        }
+      }
+    }
+  }
+}

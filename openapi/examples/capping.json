@@ -1,0 +1,925 @@
+{
+  "type": "FeatureCollection",
+  "cursor": "77d8d81145e248650421d4706b04b4bb75094731358fc8fd7da85eff7ea5d3d2",
+  "dataUse": "m-click.aero demo service. Do not use this data for operational purpose.",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.570555555555556,
+            50.03333333333333
+          ],
+          [
+            7.775555555555556,
+            49.86083333333333
+          ],
+          [
+            6.129722222222222,
+            49.86138888888889
+          ],
+          [
+            5.869722222222222,
+            49.74166666666667
+          ],
+          [
+            5.213055555555556,
+            49.59138888888889
+          ],
+          [
+            4.781388888888888,
+            49.59472222222222
+          ],
+          [
+            2.547777777777778,
+            49.00972222222222
+          ]
+        ]
+      },
+      "properties": {
+        "type": "FlightRoute"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              7.784104135,
+              49.845139022
+            ],
+            [
+              7.779832949,
+              49.844451717
+            ],
+            [
+              7.775437284,
+              49.844241465
+            ],
+            [
+              6.138282997,
+              49.844865974
+            ],
+            [
+              5.884900247,
+              49.728197218
+            ],
+            [
+              5.878422175,
+              49.726026864
+            ],
+            [
+              5.221929525,
+              49.575802447
+            ],
+            [
+              5.21745611,
+              49.575049675
+            ],
+            [
+              5.212840388,
+              49.57482564
+            ],
+            [
+              4.786264626,
+              49.578133361
+            ],
+            [
+              2.557796943,
+              48.99448603
+            ],
+            [
+              2.553031103,
+              48.993527009
+            ],
+            [
+              2.548063575,
+              48.993190172
+            ],
+            [
+              2.543085078,
+              48.993488444
+            ],
+            [
+              2.538286751,
+              48.994410367
+            ],
+            [
+              2.533852828,
+              48.995920538
+            ],
+            [
+              2.529953588,
+              48.99796097
+            ],
+            [
+              2.526738829,
+              49.000453306
+            ],
+            [
+              2.524332114,
+              49.00330183
+            ],
+            [
+              2.522826025,
+              49.006397129
+            ],
+            [
+              2.522278586,
+              49.009620292
+            ],
+            [
+              2.522711015,
+              49.012847475
+            ],
+            [
+              2.524106878,
+              49.015954656
+            ],
+            [
+              2.526412695,
+              49.018822399
+            ],
+            [
+              2.529539969,
+              49.021340453
+            ],
+            [
+              2.533368569,
+              49.023411993
+            ],
+            [
+              2.537751342,
+              49.02495735
+            ],
+            [
+              4.771906415,
+              49.610159066
+            ],
+            [
+              4.776596321,
+              49.611012948
+            ],
+            [
+              4.781458502,
+              49.611281631
+            ],
+            [
+              5.208578439,
+              49.60799667
+            ],
+            [
+              5.857529539,
+              49.756519133
+            ],
+            [
+              6.114564912,
+              49.874889972
+            ],
+            [
+              6.119103306,
+              49.876551135
+            ],
+            [
+              6.124077825,
+              49.877589978
+            ],
+            [
+              6.129284181,
+              49.877963829
+            ],
+            [
+              7.771211003,
+              49.877456884
+            ],
+            [
+              8.562219255,
+              50.049088026
+            ],
+            [
+              8.567170501,
+              50.049806277
+            ],
+            [
+              8.572251963,
+              50.049891279
+            ],
+            [
+              8.577268169,
+              50.049339757
+            ],
+            [
+              8.582026162,
+              50.048172922
+            ],
+            [
+              8.586342944,
+              50.046435652
+            ],
+            [
+              8.590052532,
+              50.044194761
+            ],
+            [
+              8.59301235,
+              50.041536429
+            ],
+            [
+              8.595108711,
+              50.038562872
+            ],
+            [
+              8.596261178,
+              50.035388413
+            ],
+            [
+              8.596425636,
+              50.032135075
+            ],
+            [
+              8.595595958,
+              50.028927892
+            ],
+            [
+              8.593804215,
+              50.025890097
+            ],
+            [
+              8.591119414,
+              50.023138395
+            ],
+            [
+              8.587644822,
+              50.020778478
+            ],
+            [
+              8.583513983,
+              50.018900975
+            ],
+            [
+              8.578885587,
+              50.017577979
+            ],
+            [
+              7.784104135,
+              49.845139022
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "type": "FlightRouteBuffer"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ID_85691_1734103335453_223",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                6.569722222,
+                49.975
+              ],
+              [
+                6.904722222,
+                49.984722222
+              ],
+              [
+                8.429444444,
+                49.748055556
+              ],
+              [
+                8.515,
+                49.683611111
+              ],
+              [
+                8.476111111,
+                49.378333333
+              ],
+              [
+                8.465277778,
+                49.294166667
+              ],
+              [
+                8.436944444,
+                49.069722222
+              ],
+              [
+                8.405555556,
+                48.983055556
+              ],
+              [
+                8.317777778,
+                48.926388889
+              ],
+              [
+                8.193055556,
+                48.925277778
+              ],
+              [
+                7.654166667,
+                49.005277778
+              ],
+              [
+                7.359444444,
+                49.095555556
+              ],
+              [
+                7.313888889,
+                49.073333333
+              ],
+              [
+                7.024722222,
+                49.069444444
+              ],
+              [
+                6.9425,
+                49.146666667
+              ],
+              [
+                6.843888889,
+                49.105833333
+              ],
+              [
+                6.705277778,
+                49.131666667
+              ],
+              [
+                6.358055556,
+                49.634444444
+              ],
+              [
+                6.357222222,
+                49.635277778
+              ],
+              [
+                6.365,
+                49.646666667
+              ],
+              [
+                6.355555556,
+                49.656944444
+              ],
+              [
+                6.443333333,
+                49.825555556
+              ],
+              [
+                6.569722222,
+                49.975
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "type": "RSA",
+        "validTimeBeginPosition": "2024-12-14T06:00:00Z",
+        "validTimeEndPosition": "2024-12-14T23:59:59Z",
+        "status": "ACTIVE",
+        "lowerLimit": "245",
+        "lowerLimitUom": "FL",
+        "lowerLimitReference": "STD",
+        "upperLimit": "660",
+        "upperLimitUom": "FL",
+        "upperLimitReference": "STD",
+        "designator": "EDNPZ24",
+        "designatorICAO": "YES",
+        "level1": true,
+        "level2": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2024-10-03T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "RAD_DCT",
+        "usage": "OPERATIONAL",
+        "instruction": null,
+        "annotation": "EN-ROUTE DCT LIMITATION IN RAS EBDCTX BETWEEN FLS GND-115",
+        "lowerLimit": null,
+        "lowerLimit_uom": null,
+        "lowerLimitType": "Ground",
+        "upperLimit": 115,
+        "upperLimit_uom": "FL",
+        "upperLimitType": "Level",
+        "designator": "EB1X"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2024-10-31T00:00:00Z",
+        "validTimeEndPosition": "2025-11-27T00:00:00Z",
+        "enabled": true,
+        "processingIndicator": "RAD_DCT",
+        "usage": "OPERATIONAL",
+        "instruction": null,
+        "annotation": "EN-ROUTE DCT LIMITATION IN RAS EBDCTX BETWEEN FLS 115-245",
+        "lowerLimit": 115,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": 245,
+        "upperLimit_uom": "FL",
+        "upperLimitType": "Level",
+        "designator": "EB2X"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2019-12-05T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "T857 SPI DENOV$ONLY AVAILABLE FOR TRAFFIC\nARR EDGGFIR \nEXCEPT \nDEST EDDL/LN WITH  RFL ABOVE FL245 IN EBBUUIR",
+        "annotation": "TO SEGREGATE OVERFLYING TRAFFIC FROM ARRIVING TRAFFIC\n\n\n",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EBED1010B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "NETEX DCT RASCA RAD ANNEX 3B$ONLY AVAILABLE FOR TRAFFIC\nDEP EDDL/LV\nWITH RFL ABOVE FL245 IN EBURUIR\nSEE AUP/UUP/AIP",
+        "annotation": "BETTER FLIGHT PLANNING\nWHEN EBTRANA/EBTRANB/ EBTRASB NOT ACTIVE",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EBED5001A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2022-07-14T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "EBBRTMA$NOT AVAILABLE FOR TRAFFIC\n1. DEP EBBR WITH\nA.RFL BLW FL075 IN EBBRTMA THEN RFL ABV FL075 IN EHAAFIR\nB.RFL BLW FL075 IN EBBUCTA THEN VIA EDGGNCTA\nC.RFL BLW FL075 IN EBBUCTA THEN RFL ABV FL075 IN LFFFFIR \n2.ARR EBBR WITH RFL BLW FL075 IN EHAASECT3",
+        "annotation": "TO PREVENT FPLS AVOIDING REGULATION",
+        "lowerLimit": 75,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Ceiling",
+        "designator": "EBEH1009D"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2022-09-08T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "Y50 CIV IDOKO$NOT AVAILABLE FOR TRAFFIC\nARR LF**\nWITH RFL ABOVE FL245 IN EBBUUIR",
+        "annotation": "TO FORCE TRAFFIC ONTO THE CORRECT ROUTE. THIS TRAFFIC SHALL FILE VIA UZ319 OR UY131. ",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EBYX1044A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2022-09-08T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "UY50 CIV DELOM$NOT AVAILABLE FOR TRAFFIC\nARR PARIS GROUP, LFOK\nWITH RFL ABOVE FL245 IN EBBUUIR",
+        "annotation": "TO FORCE TRAFFIC ONTO THE CORRECT ROUTE. THIS TRAFFIC SHALL FILE VIA UZ319 OR UY131. ",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EBYX1045A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2019-12-05T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "L610 DENUT BULAM$\nNOT AVAILABLE FOR TRAFFIC \nARR EGKK BELOW FL245\nIF ABOVE FL245 VIA EBURUIR",
+        "annotation": "TO PREVENT EARLY DESCENTS BELOW FL245 WITHIN EBURUIR ",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EBYX1056A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2016-12-08T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "ROBAL / IDOKO  $ NOT AVAILABLE FOR TRAFFIC\nDEP EHAM/RD\nWITH RFL ABOVE FL245 IN EBURUIR",
+        "annotation": "TO AVOID MAASTRICHT UAC AIRSPACE",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EBYX1057A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2022-10-06T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "T853 IBESA NVO$ONLY AVAILABLE FOR TRAFFIC \nARR EDGGFIR\n1. EXCEPT ARR EDDK/GS/KB/KL\n2. EXCEPT ARR EDDG/LP/LW\n   WITH RFL ABOVE FL245 WITHIN EBURUIR\n   THIS TRAFFIC SHALL FILE NIVNU T856",
+        "annotation": "TO SEGREGATE ARRIVING FROM TRANSIT TRAFFIC ",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED2250B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2021-08-12T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "N853 QATJA HMM NOT AVAILABLE FOR TRAFFIC$\nARR (EDGGFIR, EHAAFIR) EXCEPT ARR (EDDG,EDLS) WITH RFL BETWEEN FL155/ FL245 IN EDGGFIR",
+        "annotation": "TO SEGREGATE ARRIVAL FROM TRANSIT TRAFFIC. ARR EDDG SHALL FILE HMM DCT",
+        "lowerLimit": null,
+        "lowerLimit_uom": null,
+        "lowerLimitType": "Ground",
+        "upperLimit": 155,
+        "upperLimit_uom": "FL",
+        "upperLimitType": "Level",
+        "designator": "ED2436B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "RAD ANN2B Y180 SOBRA NISIV$\nNOT AVBL FOR TFC\nDEP EDDF ABV FL245 WITH\n1. ARR (S*, T*)  TYP (A33*, A34*, B763, B77*)\n2. ARR (C*, K*, M*)  TYP (A21N, A33*, A34*, B763)\n3. ARR (GC*, LP*)  TYP A321",
+        "annotation": "TO PROTECT EDUUNTM1N FROM SLOW CLIMBING TRAFFIC AND FORCE THE CORRECT SECTOR SEQUENCE IN SUMMER.\n\nAIRAC MAY - AIRAC SEP H24\n",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED2953A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "RAD ANN2B Y180 SOBRA NISIV$\nNOT AVBL FOR TFC\nDEP EDDF ABV FL245 WITH\n1. ARR (S*, T*)  TYP (A33*, A34*, B763, B77*)\n2. ARR (C*, K*, M*)  TYP (A21N, A33*, A34*, B763)\n3. ARR (GC*, LP*)  TYP A321",
+        "annotation": "TO PROTECT EDUUNTM1N FROM SLOW CLIMBING TRAFFIC AND FORCE THE CORRECT SECTOR SEQUENCE IN SUMMER.\n\nAIRAC MAY - AIRAC SEP H24\n",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED2953B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "RAD ANN2B Y180 SOBRA NISIV$\nNOT AVBL FOR TFC\nDEP EDDF ABV FL245 WITH\n1. ARR (S*, T*)  TYP (A33*, A34*, B763, B77*)\n2. ARR (C*, K*, M*)  TYP (A21N, A33*, A34*, B763)\n3. ARR (GC*, LP*)  TYP A321",
+        "annotation": "TO PROTECT EDUUNTM1N FROM SLOW CLIMBING TRAFFIC AND FORCE THE CORRECT SECTOR SEQUENCE IN SUMMER.\n\nAIRAC MAY - AIRAC SEP H24\n",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED2953C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "Z850 ADEMI HMM$NOT AVAILABLE FOR TRAFFIC \n1. ARR EHAM VIA HMM L602 WITH RFL ABOVE FL195 IN EDGGFIR\n2. ARR EDDL",
+        "annotation": "TO SEGREGATE ARRIVING FROM TRANSIT TRAFFIC",
+        "lowerLimit": 195,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Ceiling",
+        "designator": "ED3300A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "KOMIB$ NOT AVBL FOR TRAFFIC\nARR EG**, EI** ABOVE FL335 WITHIN EDUUUIR OR LKAAFIR\nEXCEPT\n1. TYPE MIL\n2. DEP EDDE/EDDP",
+        "annotation": "TO FORCE TRAFFIC ONTO SHORTER ROUTE OPTIONS (E.G. ENTRY EDUU  VIA LASIS, HDO, VARIK, RAPET, DEXIT, LAMSI, RENKA)\nREDUCING COMPLEXITY.",
+        "lowerLimit": 335,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED3408A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "KOMIB$ NOT AVBL FOR TRAFFIC\nARR EG**, EI** ABOVE FL335 WITHIN EDUUUIR OR LKAAFIR\nEXCEPT\n1. TYPE MIL\n2. DEP EDDE/EDDP",
+        "annotation": "TO FORCE TRAFFIC ONTO SHORTER ROUTE OPTIONS (E.G. ENTRY EDUU  VIA LASIS, HDO, VARIK, RAPET, DEXIT, LAMSI, RENKA)\nREDUCING COMPLEXITY.",
+        "lowerLimit": 335,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED3408B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": "2015-12-10T00:00:00Z",
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "Z190 ROBAR WRB$NOT AVAILABLE FOR TRAFFIC\nARR EDLI/LP WITH RFL165 AND ABOVE IN EDGGFIR",
+        "annotation": "TO FORCE ARRIVING TRAFFIC ON EXPECTED ROUTEING",
+        "lowerLimit": 165,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": 245,
+        "upperLimit_uom": "FL",
+        "upperLimitType": "Level",
+        "designator": "ED3421A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "ESIKA$ NOT AVAILABLE FOR TRAFFIC\nABOVE FL285 WITHIN EDUUUIR\n1. ARR AD:EDLI\n    EXCEPT VIA PT: ESIKA Z20 AND THEN MAG L986 SAS\n2. ARR AD:EDLP\n    EXCEPT VIA PT: ESIKA Z20 AND THEN MAG Z92 WRB\n(...) SEE DOC",
+        "annotation": "TO FORCE LISTED ARRIVING TRAFFIC VIA ESIKA TO CORRESPONDING CONNECTING ROUTES.\nEXPECT TO CROSS MAG BELOW FL285 WITH FURTHER DESCENT BELOW EDYYUAC.",
+        "lowerLimit": 285,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED3506A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "ESIKA$ NOT AVAILABLE FOR TRAFFIC\nABOVE FL285 WITHIN EDUUUIR\n1. ARR AD:EDLI\n    EXCEPT VIA PT: ESIKA Z20 AND THEN MAG L986 SAS\n2. ARR AD:EDLP\n    EXCEPT VIA PT: ESIKA Z20 AND THEN MAG Z92 WRB\n(...) SEE DOC",
+        "annotation": "TO FORCE LISTED ARRIVING TRAFFIC VIA ESIKA TO CORRESPONDING CONNECTING ROUTES.\nEXPECT TO CROSS MAG BELOW FL285 WITH FURTHER DESCENT BELOW EDYYUAC.",
+        "lowerLimit": 285,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED3506B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "ESIKA$ NOT AVAILABLE FOR TRAFFIC\nABOVE FL285 WITHIN EDUUUIR\n1. ARR AD:EDLI\n    EXCEPT VIA PT: ESIKA Z20 AND THEN MAG L986 SAS\n2. ARR AD:EDLP\n    EXCEPT VIA PT: ESIKA Z20 AND THEN MAG Z92 WRB\n(...) SEE DOC",
+        "annotation": "TO FORCE LISTED ARRIVING TRAFFIC VIA ESIKA TO CORRESPONDING CONNECTING ROUTES.\nEXPECT TO CROSS MAG BELOW FL285 WITH FURTHER DESCENT BELOW EDYYUAC.",
+        "lowerLimit": 285,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "ED3506C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "Y181 BITBU MAKIK$ONLY AVAILABLE FOR TRAFFIC\nDEP EDDF/FE/FH/FZ, ETOU\n***\nNOT AVAILABLE FOR TRAFFIC\nDEP EDDF \nVIA COA/DENUT\nABOVE FL245 IN EBURUIR / EHAMFIR\nEXCEPT ARR LONDON GROUP",
+        "annotation": "TO SEGREGATE DEPARTING TRAFFIC FROM TRANSIT TRAFFIC BEFORE INTEGRATING THE FLOWS\n***\nTO SEGREGATE DEPARTING TRAFFIC FROM TRANSIT TRAFFIC BEFORE INTEGRATING THE FLOWS     ",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EDYX1025B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "Y181 BITBU MAKIK$ONLY AVAILABLE FOR TRAFFIC\nDEP EDDF/FE/FH/FZ, ETOU\n***\nNOT AVAILABLE FOR TRAFFIC\nDEP EDDF \nVIA COA/DENUT\nABOVE FL245 IN EBURUIR / EHAMFIR\nEXCEPT ARR LONDON GROUP",
+        "annotation": "TO SEGREGATE DEPARTING TRAFFIC FROM TRANSIT TRAFFIC BEFORE INTEGRATING THE FLOWS\n***\nTO SEGREGATE DEPARTING TRAFFIC FROM TRANSIT TRAFFIC BEFORE INTEGRATING THE FLOWS\n     ",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": null,
+        "upperLimit_uom": null,
+        "upperLimitType": "Unlimited",
+        "designator": "EDYX1025C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "RAD ANN2B EDGTPITES NOT AVBL FOR TFC$\n1. VIA EDGTPITES AND THEN VIA EDYYBOLN\n2. VIA EDGTPITES AND THEN VIA EDYYBNIK EXC VIA BITBU Y181 DEMUL \n3. VIA EDGTPITES AND THEN VIA (LFEECTA, LFFFCTA) EXC VIA IDOSA (UN857, DCT) TOLVU\n..SEE DOC",
+        "annotation": "1, 2. TO ACHIEVE CORRECT SECTOR SEQUENCE. WESTBOUND FLIGHTS VIA THE OLNO OR NICKY SECTOR OF MAASTRICHT UAC SHALL FILE VIA LIRSU, ADKUV OR CROSS-BORDER FRA OPTIONS VIA GATE EDGTLIRSU. \n....SEE RAD DOC",
+        "lowerLimit": 245,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": 660,
+        "upperLimit_uom": "FL",
+        "upperLimitType": "Level",
+        "designator": "EDYX1181B"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "type": "Restriction",
+        "validTimeBeginPosition": null,
+        "validTimeEndPosition": null,
+        "enabled": true,
+        "processingIndicator": "TFR",
+        "usage": "OPERATIONAL",
+        "instruction": "NORKU$ONLY AVAILABLE AND COMPULSORY FOR TRAFFIC \nDEP./OVERFLY EDGGFIR/ABOVE EDGGFIR\nABOVE FL195\nWITH DEST. EHAM\nEXCEPT VIA HELEN\nTRAFFIC BELOW FL195 WITH DEST. EHAM SHALL FILE VIA RKN",
+        "annotation": "SID/STAR REQUIREMENT \nTRAFFIC DESTINATION EHAM WITHIN EDGG6CTA (EDGGHMML/M EDGGPADH/L) ABOVE FL195 SHALL NOT ENTER EHAAFIR BELOW FL195.  TRAFFIC SHALL NOT DESCEND IMMEDIATELY PRIOR TO THE EHAA BORDER.TRAFFIC VIA HELEN IS NOT SUBJECT TO THE FL RESTRICTION",
+        "lowerLimit": 195,
+        "lowerLimit_uom": "FL",
+        "lowerLimitType": "Level",
+        "upperLimit": 245,
+        "upperLimit_uom": "FL",
+        "upperLimitType": "Level",
+        "designator": "EH2075B"
+      }
+    }
+  ]
+}
