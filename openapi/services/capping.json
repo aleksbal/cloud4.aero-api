@@ -3,16 +3,24 @@
   "info": {
     "title": "Flight Level Capping Service",
     "description": "API for retrieving flight level capping data as GeoJSON FeatureCollection.",
+    "contact": {
+      "name": "m-click.aero GmbH",
+      "email": "info@m-click.aero"
+    },
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://cloud4.aero/v1",
+      "url": "/api",
+      "description": "Proxy to the API server via Swagger UI server"
+    },
+    {
+      "url": "https://cloud4.aero",
       "description": "Production Server"
     }
   ],
   "paths": {
-    "/flight-level-capping/{flightId}/{radius}": {
+    "/v1/in-flight/flight-level-capping/{flightId}/{radius}": {
       "get": {
         "summary": "Retrieve flight level capping data",
         "description": "Fetches flight level capping information for a specific flight and radius.",
@@ -60,6 +68,12 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
       "FeatureCollection": {
         "type": "object",
@@ -290,5 +304,10 @@
         }
       }
     }
-  }
+  },
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ]
 }
