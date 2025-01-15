@@ -77,229 +77,187 @@
     "schemas": {
       "FeatureCollection": {
         "type": "object",
-        "description": "GeoJSON FeatureCollection containing flight level capping data",
+        "description": "GeoJSON FeatureCollection containing flight level capping data.",
         "properties": {
           "type": {
             "type": "string",
             "enum": ["FeatureCollection"]
           },
-          "cursor": {
-            "type": "string",
-            "description": "Pagination cursor for retrieving additional data"
-          },
-          "dataUse": {
-            "type": "string",
-            "description": "Data usage disclaimer"
-          },
           "features": {
             "type": "array",
+            "description": "Array of GeoJSON features.",
             "items": {
-              "$ref": "#/components/schemas/Feature"
+              "oneOf": [
+                { "$ref": "#/components/schemas/FlightRoute" },
+                { "$ref": "#/components/schemas/FlightRouteBuffer" },
+                { "$ref": "#/components/schemas/CDR" },
+                { "$ref": "#/components/schemas/RSA" },
+                { "$ref": "#/components/schemas/Restriction" }
+              ]
             }
           }
         }
       },
-      "Feature": {
+      "FlightRoute": {
         "type": "object",
-        "description": "A GeoJSON Feature representing flight routes, restrictions, or RSAs",
+        "description": "Mandatory FlightRoute feature.",
         "properties": {
           "type": {
             "type": "string",
             "enum": ["Feature"]
           },
-          "id": {
-            "type": "string",
-            "description": "Optional feature ID",
-            "nullable": true
-          },
           "geometry": {
-            "oneOf": [
-              { "$ref": "#/components/schemas/Point" },
-              { "$ref": "#/components/schemas/LineString" },
-              { "$ref": "#/components/schemas/Polygon" }
-            ],
-            "description": "The geometry of the feature, which can be a Point, LineString, or Polygon"
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["LineString"] },
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": { "type": "number" }
+                }
+              }
+            }
           },
           "properties": {
-            "$ref": "#/components/schemas/Properties"
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["FlightRoute"] }
+            },
+            "additionalProperties": true
           }
         }
       },
-      "Point": {
+      "FlightRouteBuffer": {
         "type": "object",
-        "description": "GeoJSON Point geometry with 2D coordinates",
+        "description": "Mandatory FlightRouteBuffer feature.",
         "properties": {
           "type": {
             "type": "string",
-            "examples": [
-              "Point"
-            ]
+            "enum": ["Feature"]
           },
-          "coordinates": {
-            "type": "array",
-            "description": "Longitude and latitude coordinates",
-            "items": {
-              "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2
-          }
-        },
-        "required": [
-          "type",
-          "coordinates"
-        ]
-      },
-      "LineString": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "LineString"
-            ],
-            "description": "Specifies the GeoJSON object type"
-          },
-          "coordinates": {
-            "type": "array",
-            "description": "Array of coordinate pairs defining the route",
-            "items": {
-              "type": "array",
-              "items": [
-                {
-                  "type": "number",
-                  "description": "Longitude"
-                },
-                {
-                  "type": "number",
-                  "description": "Latitude"
-                }
-              ],
-              "minItems": 2,
-              "maxItems": 2
-            }
-          }
-        },
-        "required": [
-          "type",
-          "coordinates"
-        ]
-      },
-      "Polygon": {
-        "type": "object",
-        "description": "GeoJSON Polygon geometry with coordinates",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "Polygon"
-            ],
-            "description": "Specifies the GeoJSON object type"
-          },
-          "coordinates": {
-            "type": "array",
-            "description": "An array of linear ring coordinate arrays",
-            "items": {
-              "type": "array",
-              "items": {
+          "geometry": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["Polygon"] },
+              "coordinates": {
                 "type": "array",
-                "description": "Position as [longitude, latitude] pair",
                 "items": {
-                  "type": "number"
-                },
-                "minItems": 2,
-                "maxItems": 2
-              },
-              "minItems": 4,
-              "description": "A linear ring must have at least four positions, with the first and last positions identical"
+                  "type": "array",
+                  "items": { "type": "array", "items": { "type": "number" } }
+                }
+              }
             }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["FlightRouteBuffer"] }
+            },
+            "additionalProperties": true
           }
-        },
-        "required": [
-          "type",
-          "coordinates"
-        ]
+        }
       },
-      "Properties": {
+      "CDR": {
         "type": "object",
-        "description": "Feature metadata defining restrictions or flight path details",
+        "description": "Conditional Route Designation feature.",
         "properties": {
           "type": {
             "type": "string",
-            "description": "Type of feature, e.g., FlightRoute, RSA, Restriction"
+            "enum": ["Feature"]
           },
-          "validTimeBeginPosition": {
+          "geometry": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["LineString"] },
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": { "type": "number" }
+                }
+              }
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["CDR"] },
+              "validTimeBeginPosition": { "type": "string", "format": "date-time" },
+              "validTimeEndPosition": { "type": "string", "format": "date-time" },
+              "lowerLimit": { "type": "integer" },
+              "lowerLimitUom": { "type": "string" },
+              "upperLimit": { "type": "integer" },
+              "upperLimitUom": { "type": "string" },
+              "designator": { "type": "string" },
+              "direction": { "type": "string" },
+              "conditionalRouteType": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "RSA": {
+        "type": "object",
+        "description": "Restricted Airspace feature.",
+        "properties": {
+          "type": {
             "type": "string",
-            "format": "date-time",
-            "nullable": true
+            "enum": ["Feature"]
           },
-          "validTimeEndPosition": {
+          "geometry": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["Polygon"] },
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": { "type": "array", "items": { "type": "number" } }
+                }
+              }
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["RSA"] },
+              "validTimeBeginPosition": { "type": "string", "format": "date-time" },
+              "validTimeEndPosition": { "type": "string", "format": "date-time" },
+              "status": { "type": "string" },
+              "designator": { "type": "string" },
+              "designatorICAO": { "type": "string" },
+              "level1": { "type": "boolean" },
+              "level2": { "type": "boolean" }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "Restriction": {
+        "type": "object",
+        "description": "Restriction feature.",
+        "properties": {
+          "type": {
             "type": "string",
-            "format": "date-time",
-            "nullable": true
+            "enum": ["Feature"]
           },
-          "enabled": {
-            "type": "boolean",
-            "nullable": true
+          "geometry": {
+            "type": "null"
           },
-          "processingIndicator": {
-            "type": "string",
-            "nullable": true,
-            "description": "Processing indicator (e.g., RAD_DCT, TFR)"
-          },
-          "usage": {
-            "type": "string",
-            "nullable": true,
-            "description": "Operational usage type"
-          },
-          "instruction": {
-            "type": "string",
-            "nullable": true,
-            "description": "Instructions for flight planning"
-          },
-          "annotation": {
-            "type": "string",
-            "nullable": true,
-            "description": "Additional information"
-          },
-          "lowerLimit": {
-            "type": "integer",
-            "nullable": true,
-            "description": "Lower altitude limit"
-          },
-          "lowerLimitUom": {
-            "type": "string",
-            "nullable": true,
-            "enum": ["FL", "M", "FT"],
-            "description": "Unit of measurement for lower limit"
-          },
-          "lowerLimitType": {
-            "type": "string",
-            "nullable": true,
-            "enum": ["Level", "Ceiling", "Ground"],
-            "description": "Reference type for lower limit"
-          },
-          "upperLimit": {
-            "type": "integer",
-            "nullable": true,
-            "description": "Upper altitude limit"
-          },
-          "upperLimitUom": {
-            "type": "string",
-            "nullable": true,
-            "enum": ["FL", "M", "FT"],
-            "description": "Unit of measurement for upper limit"
-          },
-          "upperLimitType": {
-            "type": "string",
-            "nullable": true,
-            "enum": ["Level", "Ceiling", "Unlimited"],
-            "description": "Reference type for upper limit"
-          },
-          "designator": {
-            "type": "string",
-            "nullable": true,
-            "description": "Designator for the restriction area"
+          "properties": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["Restriction"] },
+              "validTimeBeginPosition": { "type": "string", "format": "date-time" },
+              "validTimeEndPosition": { "type": "string", "format": "date-time" },
+              "status": { "type": "string" },
+              "designator": { "type": "string" },
+              "processingIndicator": { "type": "string" },
+              "instruction": { "type": "string" },
+              "annotation": { "type": "string" }
+            },
+            "additionalProperties": true
           }
         }
       }
