@@ -736,7 +736,7 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "float"
+              "format": "int"
             }
           }
         ],
@@ -1192,7 +1192,11 @@
             ]
           },
           "geometry": {
-            "$ref": "#/components/schemas/GeoJSONPoint"
+            "oneOf": [
+              { "$ref": "#/components/schemas/GeoJSONPoint" },
+              { "$ref": "#/components/schemas/GeoJSONLineString" },
+              { "$ref": "#/components/schemas/GeoJSONPolygon" }
+            ]
           },
           "properties": {
             "type": "object"
@@ -1336,17 +1340,8 @@
             "enum": ["Feature"]
           },
           "geometry": {
-            "type": "object",
-            "properties": {
-              "type": { "type": "string", "enum": ["LineString"] },
-              "coordinates": {
-                "type": "array",
-                "items": {
-                  "type": "array",
-                  "items": { "type": "number" }
-                }
-              }
-            }
+            "$ref": "#/components/schemas/GeoJSONLineString",
+            "description": "Flight route geometry."
           },
           "properties": {
             "type": "object",
@@ -1359,24 +1354,15 @@
       },
       "FlightRouteBuffer": {
         "type": "object",
-        "description": "Mandatory FlightRouteBuffer feature.",
+        "description": "FlightRouteBuffer feature.",
         "properties": {
           "type": {
             "type": "string",
             "enum": ["Feature"]
           },
           "geometry": {
-            "type": "object",
-            "properties": {
-              "type": { "type": "string", "enum": ["Polygon"] },
-              "coordinates": {
-                "type": "array",
-                "items": {
-                  "type": "array",
-                  "items": { "type": "array", "items": { "type": "number" } }
-                }
-              }
-            }
+            "$ref": "#/components/schemas/GeoJSONPolygon",
+            "description": "Buffer structure with an give radius constructed around Flight Route"
           },
           "properties": {
             "type": "object",
@@ -1389,24 +1375,15 @@
       },
       "CDR": {
         "type": "object",
-        "description": "Conditional Route Designation feature.",
+        "description": "Alternative flight route",
         "properties": {
           "type": {
             "type": "string",
             "enum": ["Feature"]
           },
           "geometry": {
-            "type": "object",
-            "properties": {
-              "type": { "type": "string", "enum": ["LineString"] },
-              "coordinates": {
-                "type": "array",
-                "items": {
-                  "type": "array",
-                  "items": { "type": "number" }
-                }
-              }
-            }
+            "$ref": "#/components/schemas/GeoJSONLineString",
+            "description": "Alternative flight route geometry."
           },
           "properties": {
             "type": "object",
@@ -1428,24 +1405,15 @@
       },
       "RSA": {
         "type": "object",
-        "description": "Restricted Airspace feature.",
+        "description": "Restricted Airspace.",
         "properties": {
           "type": {
             "type": "string",
             "enum": ["Feature"]
           },
           "geometry": {
-            "type": "object",
-            "properties": {
-              "type": { "type": "string", "enum": ["Polygon"] },
-              "coordinates": {
-                "type": "array",
-                "items": {
-                  "type": "array",
-                  "items": { "type": "array", "items": { "type": "number" } }
-                }
-              }
-            }
+            "$ref": "#/components/schemas/GeoJSONPolygon",
+            "description": "Airspace geometry."
           },
           "properties": {
             "type": "object",
