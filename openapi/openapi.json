@@ -32,9 +32,6 @@
     },
     "/weather": {
       "$ref": "./services/weather.json"
-    },
-    "/flight-level-capping": {
-      "$ref": "./services/capping.json"
     }
   },
   "components": {
