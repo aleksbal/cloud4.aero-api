@@ -102,6 +102,4 @@ Update relevant examples if adding new schemas or endpoints.
 ## Resources
 - OpenAPI Specification: https://spec.openapis.org/oas/v3.1.0
 - OpenAPI Generator: https://openapi-generator.tech/
-- Redoc: https://github.com/Redocly/redoc
 - Swagger UI: https://swagger.io/tools/swagger-ui/
-- Spectral Linter: https://stoplight.io/open-source/spectral/
